@@ -28,7 +28,7 @@ with st.form(key="my_form"):
 	with c1:
 		submit_button = st.form_submit_button(label="✨ Get me the data!")
 	with c2:
-	doc = st.text_area(
+		doc = st.text_area(
             "Paste your text below (max 500 words)",
             height=510,
         )
