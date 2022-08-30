@@ -9,7 +9,7 @@ st.set_page_config(
     layout="wide"
 )
 
-data_path = Path(pis.__file__).parents.joinpath()
+data_path = Path(pis.__file__).parent.joinpath()
 
 st.title("INSIST-PISTA")
 st.header("Python Image Simulation and Testing Application")
