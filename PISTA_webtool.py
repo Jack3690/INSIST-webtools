@@ -36,7 +36,6 @@ with st.form(key="my_form"):
 			    min_value=1,
 			    max_value=10000)
 		submit_button = st.form_submit_button(label="✨ Get me the data!")
-		df_upload = st.file_uploader('DataFrame', type=['fits','csv'])
 
 
 if df_upload is not None:
