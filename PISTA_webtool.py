@@ -30,7 +30,7 @@ df = pd.DataFrame(zip(ra,dec,mag), columns= ['ra','dec','mag'])
 sim = Analyzer(df)
 fig, ax = sim.show_field()
 with st.form(key="my_form"):
-	ce, c1, ce, c2, c3 = st.columns([0.07, 1, 0.07, 5, 0.07])
+	c1, c2, c3 = st.columns([ 1, 2,1])
 	with c1:
 		submit_button = st.form_submit_button(label="✨ Get me the data!")
 	with c2:
