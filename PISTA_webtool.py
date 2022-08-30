@@ -35,4 +35,3 @@ with st.form(key="my_form"):
 		submit_button = st.form_submit_button(label="✨ Get me the data!")
 	with c2:
 		img = st.pyplot(fig=fig)
-        )
