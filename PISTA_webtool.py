@@ -7,7 +7,7 @@ st.set_page_config(
 )
 
 def _max_width_():
-    max_width_str = f"max-width: 1400px;"
+    max_width_str = f"max-width: 1800px;"
     st.markdown(
         f"""
     <style>
