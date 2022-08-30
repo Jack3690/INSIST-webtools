@@ -28,12 +28,11 @@ dec = [0]
 mag = [10]
 df = pd.DataFrame(zip(ra,dec,mag), columns= ['ra','dec','mag'])
 sim = Analyzer(df)
+fig, ax = sim.show_field()
 with st.form(key="my_form"):
 	ce, c1, ce, c2, c3 = st.columns([0.07, 1, 0.07, 5, 0.07])
 	with c1:
 		submit_button = st.form_submit_button(label="✨ Get me the data!")
 	with c2:
-		doc = st.text_area(
-            "Paste your text below (max 500 words)",
-            height=510,
+		img = st.pyplot(fig=fig)
         )
