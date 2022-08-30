@@ -54,8 +54,9 @@ if df_upload is not None:
 	if 'csv' in df_upload.type:
 		df = pd.read_csv(df_upload)
 	if 'fit' in df_upload.type or 'fits' in df_upload.type :
+		st.write('fits')
 		df = Table.read(df_upload).to_pandas()
-	st.write(df)
+	
 else:
 	ra = [0]
 	dec = [0]
