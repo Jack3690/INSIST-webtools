@@ -35,7 +35,7 @@ with st.form(key="my_form"):
 			    "Exposure Time",
 			    min_value=1,
 			    max_value=10000)
-		submit_button = st.form_submit_button(label="✨ Get me the data!")
+		submit_button = st.form_submit_button(label="✨ Generate Image")
 
 
 if df_upload is not None:
