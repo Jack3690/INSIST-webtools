@@ -19,5 +19,5 @@ def _max_width_():
         unsafe_allow_html=True,
     )
 _max_width_()
-st.title("Python Image Simulation and Testing Application")
-st.header("")
+st.title("PISTA")
+st.header("Python Image Simulation and Testing Application")
