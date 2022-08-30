@@ -1,4 +1,4 @@
 altair
 pandas
 streamlit
-insist-pista==1.0.2
+insist-pista
