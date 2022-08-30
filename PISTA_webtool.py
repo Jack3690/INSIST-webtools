@@ -44,6 +44,11 @@ if df_upload is not None:
 		df = pd.read_csv(df_upload)
 	if 'fit' in df_upload.type or 'fits' in df_upload.type :
 		df = Table.read(df_upload).to_pandas()
+else:
+	ra = [0]
+	dec = [0]
+	mag = [10]
+	df = pd.DataFrame(zip(ra,dec,mag), columns = ['ra','dec','manga'])
 
 st.write(df_upload)
 if submit_button:
