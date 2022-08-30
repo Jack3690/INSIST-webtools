@@ -26,4 +26,4 @@ with st.expander("ℹ️ - About this app", expanded=True):
 with st.form(key="my_form"):
     ce, c1, ce, c2, c3 = st.columns([0.07, 1, 0.07, 5, 0.07])
     with c1:
-		submit_button = st.form_submit_button(label="✨ Get me the data!")
+	submit_button = st.form_submit_button(label="✨ Get me the data!")
