@@ -28,7 +28,7 @@ dec = [0]
 mag = [10]
 df = pd.DataFrame(zip(ra,dec,mag), columns= ['ra','dec','mag'])
 sim = Analyzer(df)
-fig, ax = sim.show_field()
+fig, ax = sim.show_field(figsize = (2,2))
 with st.form(key="my_form"):
 	ce, c1, ce, c2, c3 = st.columns([0.07, 1, 0.07, 5, 0.07])
 	with c1:
