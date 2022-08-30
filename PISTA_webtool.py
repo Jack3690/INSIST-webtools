@@ -71,9 +71,9 @@ if submit_button:
 		img1 = st.pyplot(fig=fig)
 		
 		fig, ax = sim.show_image('Source')
-		img2 st.pyplot(fig=fig)
+		img2 = st.pyplot(fig=fig)
 		
 		fig, ax = sim.show_image('DC')
-		img3 st.pyplot(fig=fig)
+		img3 = st.pyplot(fig=fig)
 
 
