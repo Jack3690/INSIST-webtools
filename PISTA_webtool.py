@@ -55,13 +55,13 @@ if df_upload is not None:
 		df = pd.read_csv(df_upload)
 	if 'fit' in df_upload.type or 'fits' in df_upload.type :
 		df = Table.read(df_upload).to_pandas()
+		print(df)
 else:
 	ra = [0]
 	dec = [0]
 	mag = [10]
 	df = pd.DataFrame(zip(ra,dec,mag), columns = ['ra','dec','mag'])
 if submit_button:
-	st.write('1')
 	sim = pis.Analyzer(df=df, exp_time = exp_time, n_x = n_x, n_y = n_y)
 	sim()
 	fig,ax = sim.show_image(cmap = 'gray')
