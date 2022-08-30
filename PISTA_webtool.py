@@ -27,7 +27,7 @@ with st.expander("ℹ️ - About this app", expanded=True):
     st.markdown("")
 
 with st.form(key="my_form"):
-	c1, c2, c3 = st.columns([ 1, 2,1])
+	c1, c2, c3 = st.columns([ 1, 2,0.8])
 	with c1:
 		df_upload = st.file_uploader('DataFrame', type=['fits','csv'])
 		
@@ -69,5 +69,11 @@ if submit_button:
 	with c3:
 		fig, ax = sim.show_field()
 		img1 = st.pyplot(fig=fig)
+		
+		fig, ax = sim.show_image('Source')
+		img2 st.pyplot(fig=fig)
+		
+		fig, ax = sim.show_image('DC')
+		img3 st.pyplot(fig=fig)
 
 
