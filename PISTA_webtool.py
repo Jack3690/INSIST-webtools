@@ -36,6 +36,16 @@ with st.form(key="my_form"):
 			    "Exposure Time",
 			    min_value=1,
 			    max_value=10000)
+		
+		n_x = st.number_input(
+			    "n_pix x axis",
+			    min_value=10,
+			    max_value=8000)
+		
+		n_y = st.number_input(
+			    "n_pix y axis",
+			    min_value=10,
+			    max_value=8000)
 		submit_button = st.form_submit_button(label="✨ Generate Image")
 
 
@@ -48,11 +58,9 @@ else:
 	ra = [0]
 	dec = [0]
 	mag = [10]
-	df = pd.DataFrame(zip(ra,dec,mag), columns = ['ra','dec','manga'])
-
-st.write(df_upload)
+	df = pd.DataFrame(zip(ra,dec,mag), columns = ['ra','dec','mag'])
 if submit_button:
-	sim = pis.Analyzer(df=df, exp_time = exp_time)
+	sim = pis.Analyzer(df=df, exp_time = exp_time, n_x = n_x, n_y = n_y)
 	sim()
 	fig,ax = sim.show_image(cmap = 'gray')
 	with c2:
