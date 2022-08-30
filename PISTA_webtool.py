@@ -25,8 +25,14 @@ with st.expander("ℹ️ - About this app", expanded=True):
     st.markdown("")
 with st.form(key="my_form"):
 
+	ce, c1, ce, c2, c3 = st.columns([0.07, 1, 0.07, 5, 0.07])
 
-    ce, c1, ce, c2, c3 = st.columns([0.07, 1, 0.07, 5, 0.07])
+	with c1:
+		ModelType = st.radio(
+		    "Choose your model",
+		    ["DistilBERT (Default)", "Flair"],
+		    help="At present, you can choose between 2 models (Flair or DistilBERT) to embed your text. More to come!",
+		)
     
 
-    submit_button = st.form_submit_button(label="✨ Get me the data!")
+    	submit_button = st.form_submit_button(label="✨ Get me the data!")
