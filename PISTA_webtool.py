@@ -3,6 +3,7 @@ import pandas as pd
 import numpy as np
 import pista as pis
 from pathlib import Path
+from astropy.table import Table
 
 st.set_page_config(
     page_title="PISTA",
@@ -41,6 +42,8 @@ with st.form(key="my_form"):
 if df_upload is not None:
 	if 'csv' in df_upload.type:
 		df = pd.read_csv(df_upload)
+	if 'fit' in df_upload.type or 'fits' in df_upload.type :
+		df = Table.read(df_upload).to_pandas()
 
 st.write(df_upload)
 if submit_button:
