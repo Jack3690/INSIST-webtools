@@ -32,7 +32,7 @@ fig,ax = sim.show_image()
 with st.form(key="my_form"):
 	c1, c2, c3 = st.columns([ 1, 2,1])
 	with c1:
-		df_up = st.file_uploader(DataFrame, type=['fits','csv'])
+		df_up = st.file_uploader('DataFrame', type=['fits','csv'])
 		submit_button = st.form_submit_button(label="✨ Get me the data!")
 	with c2:
 		img = st.pyplot(fig=fig,figsize = (2,2))
