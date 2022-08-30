@@ -19,9 +19,8 @@ def _max_width_():
         unsafe_allow_html=True,
     )
 _max_width_()
-c30, c31, c32 = st.columns([30, 1, 3])
+c30, c31, c32 = st.columns([80, 1, 3])
 
 with c30:
-    # st.image("logo.png", width=400)
     st.title("Python Image Simulation and Testing Application")
     st.header("")
