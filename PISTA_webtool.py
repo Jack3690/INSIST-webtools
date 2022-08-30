@@ -51,6 +51,7 @@ with st.form(key="my_form"):
 
 
 if df_upload is not None:
+	st.write(df_upload.type)
 	if 'csv' in df_upload.type:
 		df = pd.read_csv(df_upload)
 	if 'fit' in df_upload.type or 'fits' in df_upload.type :
