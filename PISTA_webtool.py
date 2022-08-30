@@ -25,22 +25,27 @@ with st.expander("ℹ️ - About this app", expanded=True):
     )
 
     st.markdown("")
-df = pd.read_csv(f'{data_path}/data/example.csv')
-sim = pis.Analyzer(df)
-sim()
-fig,ax = sim.show_image()
 
 with st.form(key="my_form"):
 	c1, c2, c3 = st.columns([ 1, 2,1])
 	with c1:
-		df_up = st.file_uploader('DataFrame', type=['fits','csv'])
+		df_upload = st.file_uploader('DataFrame', type=['fits','csv'])
+		
+		exp_time = st.number_input(
+			    "Exposure Time",
+			    min_value=1,
+			    max_value=10000)
 		submit_button = st.form_submit_button(label="✨ Get me the data!")
+		df_upload = st.file_uploader('DataFrame', type=['fits','csv'])
 
-def plot_image():
-	with c2:
-		img = st.pyplot(fig=fig,figsize = (2,2))
 
+if df_upload is not None:
+     df = pd.read_csv(df_upload)
 if submit_button:
-	plot_image()
+	sim(df=df, exp_time = exp_time)
+	sim()
+	fig,ax = sim.show_image()
+	with c2:
+		img = st.pyplot(fig=fig)
 
 
