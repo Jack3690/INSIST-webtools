@@ -39,11 +39,13 @@ with st.form(key="my_form"):
 		
 		n_x = st.number_input(
 			    "n_pix x axis",
+			    value =1000,
 			    min_value=10,
 			    max_value=8000)
 		
 		n_y = st.number_input(
 			    "n_pix y axis",
+			    value =1000,
 			    min_value=10,
 			    max_value=8000)
 		submit_button = st.form_submit_button(label="✨ Generate Image")
