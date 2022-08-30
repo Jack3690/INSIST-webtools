@@ -67,6 +67,7 @@ if submit_button:
 	with c2:
 		img = st.pyplot(fig=fig)
 	with c3:
-		
+		fig, ax = sim.show_field()
+		img1 = st.pyplot(fig=fig)
 
 
