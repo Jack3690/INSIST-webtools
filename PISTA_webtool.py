@@ -50,7 +50,7 @@ with st.form(key="my_form"):
 		submit_button = st.form_submit_button(label="✨ Generate Image")
 
 Valid_df = False
-df = None:
+df = None
 if df_upload is not None:
 	if 'csv' in df_upload.type:
 		df = pd.read_csv(df_upload)
