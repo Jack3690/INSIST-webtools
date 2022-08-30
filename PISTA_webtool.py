@@ -13,15 +13,14 @@ st.set_page_config(
 data_path = Path(pis.__file__).parent.joinpath()
 
 st.title("INSIST-PISTA")
-st.header("Python Image Simulation and Testing Application")
+st.header("Python Image Simulation and Testing Application (PISTA)")
 
 with st.expander("ℹ️ - About this app", expanded=True):
 
     st.write(
         """     
--   PISTA simulates individual stars and adds different noises. 
-    The input parameter space is designed to inculcate observational parameters,
-    telescope parameters and detector characteristics.
+-   This webtool is based on PISTA, a python-based resolved-stellar population simulation package. 
+This interface is designed to take minimal input from user to simulate fields with INSIST specifications
 	    """
     )
 
@@ -67,5 +66,7 @@ if submit_button:
 	fig,ax = sim.show_image(cmap = 'gray')
 	with c2:
 		img = st.pyplot(fig=fig)
+	with c3:
+		
 
 
