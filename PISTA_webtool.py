@@ -36,10 +36,11 @@ with st.form(key="my_form"):
 		df_up = st.file_uploader('DataFrame', type=['fits','csv'])
 		submit_button = st.form_submit_button(label="✨ Get me the data!")
 
-if submit_button:
-	plot_image()
 def plot_image():
 	with c2:
 		img = st.pyplot(fig=fig,figsize = (2,2))
+
+if submit_button:
+	plot_image()
 
 
