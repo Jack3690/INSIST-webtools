@@ -61,7 +61,7 @@ else:
 	mag = [10]
 	df = pd.DataFrame(zip(ra,dec,mag), columns = ['ra','dec','mag'])
 if submit_button:
-	st.write(df)
+	st.write('1')
 	sim = pis.Analyzer(df=df, exp_time = exp_time, n_x = n_x, n_y = n_y)
 	sim()
 	fig,ax = sim.show_image(cmap = 'gray')
