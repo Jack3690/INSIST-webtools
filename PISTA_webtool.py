@@ -49,14 +49,20 @@ with st.form(key="my_form"):
 			    max_value=8000)
 		submit_button = st.form_submit_button(label="✨ Generate Image")
 
-
+Valid_df = False
+df = None:
 if df_upload is not None:
 	if 'csv' in df_upload.type:
 		df = pd.read_csv(df_upload)
 	if 'fit' in df_upload.type or 'fits' in df_upload.type or 'octet' in df_upload.type:
 		df = Table.read(df_upload).to_pandas()
-	
-else:
+	Valid_df = True
+if df is not None:
+	for i in ['ra','dec','mag']:
+		if i not in df.keys():
+			Valid_df = False	
+if not Valid_df:
+	st.write('Default DataFrame selected')
 	ra = [0]
 	dec = [0]
 	mag = [10]
