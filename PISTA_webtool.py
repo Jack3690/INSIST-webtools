@@ -19,8 +19,8 @@ with st.expander("ℹ️ - About this app", expanded=True):
 
     st.write(
         """     
--   This webtool is based on PISTA, a python-based resolved-stellar population simulation package. 
-This interface is designed to take minimal input from user to simulate fields with INSIST specifications
+   	This webtool is based on PISTA, a python-based resolved-stellar population simulation package. 
+	This interface is designed to take minimal input from user to simulate fields with INSIST specifications
 	    """
     )
 
