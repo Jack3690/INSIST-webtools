@@ -3,7 +3,7 @@ import pandas as pd
 import numpy as np
 
 st.set_page_config(
-    page_title="Python Image Simulation and Testing Application (PISTA)",
+    page_title="PISTA",
 )
 
 def _max_width_():
@@ -20,3 +20,8 @@ def _max_width_():
     )
 _max_width_()
 c30, c31, c32 = st.columns([2.5, 1, 3])
+
+with c30:
+    # st.image("logo.png", width=400)
+    st.title("Python Image Simulation and Testing Application")
+    st.header("")
