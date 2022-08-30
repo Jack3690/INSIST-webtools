@@ -9,7 +9,7 @@ st.set_page_config(
 )
 
 
-st.title("PISTA")
+st.title("INSIST-PISTA")
 st.header("Python Image Simulation and Testing Application")
 
 with st.expander("ℹ️ - About this app", expanded=True):
@@ -23,6 +23,11 @@ with st.expander("ℹ️ - About this app", expanded=True):
     )
 
     st.markdown("")
+ra = [0]
+dec = [0]
+mag = [10]
+df = pd.DataFrame(zip(ra,dec,mag), columns= ['ra','dec','mag'])
+sim = Analyzer(df)
 with st.form(key="my_form"):
 	ce, c1, ce, c2, c3 = st.columns([0.07, 1, 0.07, 5, 0.07])
 	with c1:
