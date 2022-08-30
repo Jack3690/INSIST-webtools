@@ -28,10 +28,10 @@ dec = [0]
 mag = [10]
 df = pd.DataFrame(zip(ra,dec,mag), columns= ['ra','dec','mag'])
 sim = Analyzer(df)
-fig, ax = sim.show_field(figsize = (2,2))
+fig, ax = sim.show_field()
 with st.form(key="my_form"):
 	ce, c1, ce, c2, c3 = st.columns([0.07, 1, 0.07, 5, 0.07])
 	with c1:
 		submit_button = st.form_submit_button(label="✨ Get me the data!")
 	with c2:
-		img = st.pyplot(fig=fig)
+		img = st.pyplot(fig=fig,figsize = (2,2))
