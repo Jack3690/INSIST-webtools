@@ -40,11 +40,11 @@ with st.form(key="my_form"):
 
 if df_upload is not None:
      df = pd.read_csv(df_upload)
-st.write(submit_button)
+st.write(df_upload)
 if submit_button:
 	sim = pis.Analyzer(df=df, exp_time = exp_time)
 	sim()
-	fig,ax = sim.show_image()
+	fig,ax = sim.show_image(cmap = 'gray')
 	with c2:
 		img = st.pyplot(fig=fig)
 
