@@ -4,7 +4,7 @@ import numpy as np
 import pista as pis
 from pathlib import Path
 from astropy.table import Table
-from astropy.fits import FITS as fits
+from astropy.io import FITS as fits
 
 st.set_page_config(
     page_title="PISTA",
