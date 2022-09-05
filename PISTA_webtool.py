@@ -58,7 +58,6 @@ if df_upload is not None:
 	if 'fit' in df_upload.type or 'fits' in df_upload.type or 'octet' in df_upload.type:
 		hdul = fits.open(df_upload)
 		for hdu in hdul:
-			st.write(hdu.header)
 			if 'XTENSION' in hdu.header.keys():
 				if hdu.header['XTENSION']=='BINTABLE':
 					tab = Table(hdu.data)
