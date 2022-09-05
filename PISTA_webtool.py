@@ -56,7 +56,7 @@ if df_upload is not None:
 		df = pd.read_csv(df_upload)
 	if 'fit' in df_upload.type or 'fits' in df_upload.type or 'octet' in df_upload.type:
 		st.write(df_upload)
-		tab = Table.read(df_upload, hdu = 1)
+		tab = Table.read(df_upload.name)
 		df = tab.to_pandas()
 	Valid_df = True
 if df is not None:
