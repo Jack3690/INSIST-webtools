@@ -4,6 +4,7 @@ import numpy as np
 import pista as pis
 from pathlib import Path
 from astropy.table import Table
+from astropy.fits import FITS as fits
 
 st.set_page_config(
     page_title="PISTA",
@@ -56,7 +57,7 @@ if df_upload is not None:
 		df = pd.read_csv(df_upload)
 	if 'fit' in df_upload.type or 'fits' in df_upload.type or 'octet' in df_upload.type:
 		st.write(df_upload)
-		tab = Table.read(df_upload.name)
+		tab = Table.read(df_upload)
 		df = tab.to_pandas()
 	Valid_df = True
 if df is not None:
