@@ -69,8 +69,8 @@ if df is not None:
 			Valid_df = False	
 if not Valid_df:
 	st.write('Default DataFrame selected')
-	ra = [0]
-	dec = [0]
+	ra = [10]
+	dec = [10]
 	mag = [10]
 	df = pd.DataFrame(zip(ra,dec,mag), columns = ['ra','dec','mag'])
 else : 
