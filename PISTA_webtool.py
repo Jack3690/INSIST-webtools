@@ -88,7 +88,7 @@ if submit_button:
 	ax.patch.set_linewidth('3')
 	img = ax.imshow(sim.digital,cmap='gray' , norm = norm)
 	plt.colorbar(img,ax = ax)
-	ax.set_title(f'{source} \nRequested center : {self.name}')
+	#ax.set_title(f'{source} \nRequested center : {self.name}')
 	ax.grid(False)
 	st.write(type(fig))
 	with c2:
