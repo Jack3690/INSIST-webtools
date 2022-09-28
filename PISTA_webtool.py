@@ -82,12 +82,12 @@ if submit_button:
 	st.write(sim.digital.shape)
 	fig = plt.figure()
 	ax = fig.add_subplot()
-        ax.patch.set_edgecolor('black')  
-        ax.patch.set_linewidth('3') 
-        img = ax.imshow(data,cmap=cmap , norm = norm)
-        plt.colorbar(img,ax = ax)
-        ax.set_title(f'{source} \nRequested center : {self.name}')
-        ax.grid(False)
+	ax.patch.set_edgecolor('black') 
+	ax.patch.set_linewidth('3')
+	img = ax.imshow(data,cmap=cmap , norm = norm)
+	plt.colorbar(img,ax = ax)
+	ax.set_title(f'{source} \nRequested center : {self.name}')
+	ax.grid(False)
 	st.write(type(fig))
 	with c2:
 		
