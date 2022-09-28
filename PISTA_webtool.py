@@ -82,7 +82,7 @@ if submit_button:
 	sim()
 	norm = col.LogNorm()
 	fig = plt.figure()
-	ax = fig.add_subplot()
+	ax = fig.add_subplot(projection = sim.wcs)
 	img = ax.imshow(sim.digital,cmap='gray' , norm = norm)
 	plt.colorbar(img,ax = ax, location = 'bottom', anchor = (0.5,1.8), shrink = 0.75)
 	ax.set_title(f'Digital \nRequested center : {sim.name}')
