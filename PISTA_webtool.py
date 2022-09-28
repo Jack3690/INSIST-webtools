@@ -95,7 +95,7 @@ if submit_button:
 
 		fig = plt.figure()
 		ax = fig.add_subplot()
-		img = ax.imshow(sim.light_array,cmap='gray' , norm = norm)
+		img = ax.imshow(sim.light_array,cmap='jet' , norm = norm)
 		plt.colorbar(img,ax = ax)
 		ax.set_title(f'Source \nRequested center : {sim.name}')
 		ax.grid(False)
@@ -103,7 +103,7 @@ if submit_button:
 		
 		fig = plt.figure()
 		ax = fig.add_subplot()
-		img = ax.imshow(sim.DC,cmap='gray' , norm = norm)
+		img = ax.imshow(sim.DC_array,cmap='seismic' , norm = norm)
 		plt.colorbar(img,ax = ax)
 		ax.set_title(f'DC \nRequested center : {sim.name}')
 		ax.grid(False)
