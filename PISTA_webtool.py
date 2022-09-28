@@ -81,7 +81,7 @@ if submit_button:
 	sim()
 	st.write(sim.digital.shape)
 	fig, ax = plt.subplots()
-	fig, ax = sim.show_image(fig = fig, ax = ax, cmap = 'gray')
+	ax = fig.imshow(sim.digital)
 	with c2:
 		
 		img = st.pyplot(fig=fig)
