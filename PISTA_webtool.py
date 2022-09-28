@@ -83,8 +83,8 @@ if submit_button:
 	norm = col.LogNorm()
 	fig = plt.figure()
 	ax = fig.add_subplot()
-	img = ax.imshow(sim.digital,cmap='gray' , norm = norm, anchor = (0.5,1.07))
-	plt.colorbar(img,ax = ax, location = 'bottom')
+	img = ax.imshow(sim.digital,cmap='gray' , norm = norm)
+	plt.colorbar(img,ax = ax, location = 'bottom', anchor = (0.5,1.07))
 	ax.set_title(f'Digital \nRequested center : {sim.name}')
 	ax.grid(False)
 	with c2:
