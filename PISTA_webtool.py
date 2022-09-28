@@ -80,7 +80,14 @@ if submit_button:
 	sim = pis.Analyzer(df=df, exp_time = exp_time, n_x = n_x, n_y = n_y)
 	sim()
 	st.write(sim.digital.shape)
-	fig, ax = sim.show_image(cmap = 'gray', show_wcs = False )
+	fig = plt.figure()
+	ax = fig.add_subplot()
+        ax.patch.set_edgecolor('black')  
+        ax.patch.set_linewidth('3') 
+        img = ax.imshow(data,cmap=cmap , norm = norm)
+        plt.colorbar(img,ax = ax)
+        ax.set_title(f'{source} \nRequested center : {self.name}')
+        ax.grid(False)
 	st.write(type(fig))
 	with c2:
 		
