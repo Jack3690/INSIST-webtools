@@ -81,26 +81,30 @@ if submit_button:
 	sim = pis.Analyzer(df=df, exp_time = exp_time, n_x = n_x, n_y = n_y)
 	sim()
 	norm = col.LogNorm()
-	st.write(sim.digital.shape)
 	fig = plt.figure()
 	ax = fig.add_subplot()
-	#ax.patch.set_edgecolor('black') 
-	#ax.patch.set_linewidth('3')
 	img = ax.imshow(sim.digital,cmap='gray' , norm = norm)
 	plt.colorbar(img,ax = ax)
-	#ax.set_title(f'{source} \nRequested center : {self.name}')
+	ax.set_title(f'Digital \nRequested center : {sim.name}')
 	ax.grid(False)
-	st.write(type(fig))
 	with c2:
 		img = st.pyplot(fig=fig)
 	with c3:
 		fig, ax = sim.show_field()
 		img1 = st.pyplot(fig=fig)
-		
-		fig, ax = sim.show_image('Source')
+
+		fig = plt.figure()
+		ax = fig.add_subplot()
+		img = ax.imshow(sim.light_array,cmap='gray' , norm = norm)
+		plt.colorbar(img,ax = ax)
+		ax.set_title(f'Source \nRequested center : {sim.name}')
+		ax.grid(False)
 		img2 = st.pyplot(fig=fig)
 		
-		fig, ax = sim.show_image('DC')
+		fig = plt.figure()
+		ax = fig.add_subplot()
+		img = ax.imshow(sim.DC,cmap='gray' , norm = norm)
+		plt.colorbar(img,ax = ax)
+		ax.set_title(f'DC \nRequested center : {sim.name}')
+		ax.grid(False)
 		img3 = st.pyplot(fig=fig)
-
-
