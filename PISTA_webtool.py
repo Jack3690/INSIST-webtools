@@ -80,8 +80,8 @@ if submit_button:
 	sim = pis.Analyzer(df=df, exp_time = exp_time, n_x = n_x, n_y = n_y)
 	sim()
 	st.write(sim.digital.shape)
-	fig, ax = plt.subplots()
-	ax.imshow(sim.digital)
+	fig, ax = sim.show_field()
+	st.write(type(fig))
 	with c2:
 		
 		img = st.pyplot(fig=fig)
