@@ -80,12 +80,10 @@ if submit_button:
 	sim = pis.Analyzer(df=df, exp_time = exp_time, n_x = n_x, n_y = n_y)
 	sim()
 	st.write(sim.digital.shape)
-	fig,ax = sim.show_image(cmap = 'gray')
+	fig, ax = plt.subplots()
+	fig, ax = sim.show_image(fig = fig, ax = ax, cmap = 'gray')
 	with c2:
-		fig, ax = plt.subplots()
-		x = np.linspace(0,10,100)
-		y = np.sin(x)
-		ax.plot(x,y)
+		
 		img = st.pyplot(fig=fig)
 	with c3:
 		fig, ax = sim.show_field()
