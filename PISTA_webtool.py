@@ -5,6 +5,7 @@ import pista as pis
 from pathlib import Path
 from astropy.table import Table
 from astropy.io import fits
+import matplotlib.pyplot as plt
 
 st.set_page_config(
     page_title="PISTA",
@@ -81,6 +82,10 @@ if submit_button:
 	st.write(sim.digital.shape)
 	fig,ax = sim.show_image(cmap = 'gray')
 	with c2:
+		fig, ax = plt.subplots()
+		x = np.linspace(0,10,100)
+		y = np.sin(x)
+		ax.plot(x,y)
 		img = st.pyplot(fig=fig)
 	with c3:
 		fig, ax = sim.show_field()
