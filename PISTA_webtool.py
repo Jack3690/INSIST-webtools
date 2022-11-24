@@ -79,6 +79,8 @@ else :
 	st.write(f'{df_upload.name} dataframe selected')
 if submit_button:
 	sim = pis.Analyzer(df=df, exp_time = exp_time, n_x = n_x, n_y = n_y)
+	sim.cuda = False
+	sim.fftconv = False
 	sim()
 	norm = col.LogNorm()
 	fig = plt.figure()
