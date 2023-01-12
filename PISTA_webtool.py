@@ -100,9 +100,6 @@ if submit_button:
                      }
 	sim(det_params = det_params)
 	fig, ax = sim.show_image(cmap = 'jet')
-	plt.colorbar(img,ax = ax, location = 'bottom', anchor = (0.5,1.8), shrink = 0.75)
-	ax.set_title(f'Digital \nRequested center : {sim.name}')
-	ax.grid(False)
 	with c2:
 		img = st.pyplot(fig=fig)
 	with c3:
