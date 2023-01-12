@@ -110,7 +110,7 @@ if submit_button:
 		
 	with c3:	
 		fig = plt.figure()
-		ax = fig.add_subplot()
+		ax = fig.add_subplot(projection = sim.wcs)
 		img = ax.imshow(sim.light_array,cmap='jet' , norm = norm)
 		plt.colorbar(img,ax = ax, location = 'bottom', anchor = (0.5,1.8), shrink = 0.75)
 		ax.set_title(f'Source \nRequested center : {sim.name}')
@@ -118,7 +118,7 @@ if submit_button:
 		img2 = st.pyplot(fig=fig)
 		
 		fig = plt.figure()
-		ax = fig.add_subplot()
+		ax = fig.add_subplot(projection = sim.wcs)
 		img = ax.imshow(sim.DC_array,cmap='seismic' , norm = norm)
 		plt.colorbar(img,ax = ax, location = 'bottom', anchor = (0.5,1.8), shrink = 0.75)
 		ax.set_title(f'DC \nRequested center : {sim.name}')
