@@ -105,7 +105,7 @@ if submit_button:
 	with c3:
 		norm = col.LogNorm()
 		fig = plt.figure()
-		ax = fig.add_subplot(projection = sim.wcs)
+		ax = fig.add_subplot()
 		img = ax.imshow(sim.digital,cmap='gray' , norm = norm)
 		img1 = st.pyplot(fig=fig)
 
