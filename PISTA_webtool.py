@@ -99,16 +99,16 @@ if submit_button:
               'DN'         :  0.01/100     
                      }
 	sim(det_params = det_params)
-	fig, ax = sim.show_image(cmap = 'jet')
 	with c2:
-		img = st.pyplot(fig=fig)
-	with c3:
 		norm = col.LogNorm()
-		fig = plt.figure()
-		ax = fig.add_subplot()
-		img = ax.imshow(sim.digital,cmap='gray' , norm = norm)
+		fig  = plt.figure()
+		ax   = fig.add_subplot(projection = sim.wcs)
+		img  = ax.imshow(sim.digital,cmap='gray' , norm = norm)
 		img1 = st.pyplot(fig=fig)
 
+		img = st.pyplot(fig=fig)
+	with c3:
+		
 		fig = plt.figure()
 		ax = fig.add_subplot()
 		img = ax.imshow(sim.light_array,cmap='jet' , norm = norm)
