@@ -98,7 +98,7 @@ if submit_button:
               'T'          :  225,        
               'DN'         :  0.01/100     
                      }
-	sim(det_params = params)
+	sim(det_params = det_params)
 	fig, ax = sim.show_image(cmap = 'jet')
 	plt.colorbar(img,ax = ax, location = 'bottom', anchor = (0.5,1.8), shrink = 0.75)
 	ax.set_title(f'Digital \nRequested center : {sim.name}')
