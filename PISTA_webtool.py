@@ -104,11 +104,11 @@ if submit_button:
 		fig  = plt.figure()
 		ax   = fig.add_subplot(projection = sim.wcs)
 		img  = ax.imshow(sim.digital,cmap='gray' , norm = norm)
-		img1 = st.pyplot(fig=fig)
-
+		ax.set_title(f'Digital \nRequested center : {sim.name}')
+		ax.grid(False)
 		img = st.pyplot(fig=fig)
-	with c3:
 		
+	with c3:	
 		fig = plt.figure()
 		ax = fig.add_subplot()
 		img = ax.imshow(sim.light_array,cmap='jet' , norm = norm)
