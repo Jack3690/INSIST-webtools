@@ -78,14 +78,28 @@ if not Valid_df:
 else : 
 	st.write(f'{df_upload.name} dataframe selected')
 if submit_button:
-	sim = pis.Analyzer(df=df, exp_time = exp_time, n_x = n_x, n_y = n_y)
-	sim.cuda = False
-	sim.fftconv = False
-	sim()
-	norm = col.LogNorm()
-	fig = plt.figure()
-	ax = fig.add_subplot(projection = sim.wcs)
-	img = ax.imshow(sim.digital,cmap='gray' , norm = norm)
+	tel_params ={
+            'aperture'       : 100,
+            'pixel_scale'    : 0.1,
+            'psf_file'       : f'{data_path}/data/PSF/INSIST/off_axis_poppy.npy',
+            'response_funcs' :  [ f'{data_path}/data/INSIST/UV/Filter.dat,1,100',    
+                                  f'{data_path}/data/INSIST/UV/Coating.dat,5,100',   # 6 mirrors
+                                  f'{data_path}/data/INSIST/UV/Dichroic.dat,2,100',   # 2 dichroics
+                                  f'{data_path}/data/INSIST/UV/QE.dat,1,100'
+                                ],        
+             'coeffs'       : 1, #0.17   
+             'theta'        : 0                  
+            } 
+	sim = pis.Imager(df=df, tel_exp_time = exp_time, tel_params = tel_params, n_x = n_x, n_y = n_y)
+	det_params = {'shot_noise' :  'Gaussian',
+              'G1'         :  1,
+              'PRNU_frac'  :  0.25/100,
+              'RN'         :  3,
+              'T'          :  225,        
+              'DN'         :  0.01/100     
+                     }
+	sim(det_params = params)
+	fig, ax = sim.show_image(cmap = 'jet')
 	plt.colorbar(img,ax = ax, location = 'bottom', anchor = (0.5,1.8), shrink = 0.75)
 	ax.set_title(f'Digital \nRequested center : {sim.name}')
 	ax.grid(False)
