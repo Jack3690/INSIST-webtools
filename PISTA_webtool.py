@@ -90,6 +90,7 @@ if submit_button:
              'coeffs'       : 1, #0.17   
              'theta'        : 0                  
             } 
+	st.write(exp_time)
 	sim = pis.Imager(df=df, tel_exp_time = exp_time, tel_params = tel_params, n_x = n_x, n_y = n_y)
 	det_params = {'shot_noise' :  'Gaussian',
               'G1'         :  1,
@@ -99,6 +100,7 @@ if submit_button:
               'DN'         :  0.01/100     
                      }
 	sim(det_params = det_params)
+	st.write(sim.zero_flux)
 	with c2:
 		norm = col.LogNorm()
 		fig  = plt.figure()
