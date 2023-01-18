@@ -121,7 +121,7 @@ if submit_button:
 		
 		fig = plt.figure()
 		ax = fig.add_subplot()
-		bins  = np.linspace(sim.DC_array.min(), sim.DC_array.max(), 20)
+		bins  = np.linspace(sim.DC_array.min(), sim.DC_array.max(), 10)
 		img = ax.hist(sim.DC_array, bins = bins)
 		ax.set_title('DC Histogram')
 		ax.grid(False)
