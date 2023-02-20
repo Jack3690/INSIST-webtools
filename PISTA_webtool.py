@@ -71,10 +71,7 @@ if df is not None:
 			Valid_df = False	
 if not Valid_df:
 	st.write('Default DataFrame selected')
-	ra = [10]
-	dec = [10]
-	mag = [10]
-	df = pd.DataFrame(zip(ra,dec,mag), columns = ['ra','dec','mag'])
+	df = Table.read(f'{data_path}/data/sample.fits').to_pandas()
 else : 
 	st.write(f'{df_upload.name} dataframe selected')
 if submit_button:
@@ -96,11 +93,10 @@ if submit_button:
               'G1'         :  1,
               'PRNU_frac'  :  0.25/100,
               'RN'         :  3,
-              'T'          :  225,        
+              'T'          :  218,        
               'DN'         :  0.01/100     
                      }
 	sim(det_params = det_params)
-	st.write(sim.zero_flux)
 	with c2:
 		fig, ax = sim.show_image(cmap = 'gray')
 		img = st.pyplot(fig=fig)
