@@ -36,18 +36,18 @@ with st.form(key="my_form"):
 		
 		exp_time = st.number_input(
 			    "Exposure Time",
-			    min_value=1,
+			    min_value=600,
 			    max_value=10000)
 		
 		n_x = st.number_input(
 			    "n_pix x axis",
-			    value =1000,
+			    value =500,
 			    min_value=10,
 			    max_value=8000)
 		
 		n_y = st.number_input(
 			    "n_pix y axis",
-			    value =1000,
+			    value =500,
 			    min_value=10,
 			    max_value=8000)
 		submit_button = st.form_submit_button(label="✨ Generate Image")
