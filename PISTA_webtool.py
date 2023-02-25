@@ -32,7 +32,7 @@ with st.expander("ℹ️ - About this app", expanded=True):
 with st.form(key="my_form"):
 	c1, c2, c3 = st.columns([ 1, 2,0.8])
 	with c1:
-		df_upload = st.file_uploader('DataFrame', type=['fits','csv'])
+		df_upload = st.file_uploader('DataFrame', type=['fits','csv'], help = "The DataFrame should have columns 'ra','dec', and 'mag'")
 		
 		exp_time = st.number_input(
 			    "Exposure Time",
