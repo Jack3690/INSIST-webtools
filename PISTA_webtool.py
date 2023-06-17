@@ -90,7 +90,7 @@ if submit_button:
 	sim = pis.Imager(df=df, exp_time = exp_time, tel_params = tel_params, n_x = n_x, n_y = n_y)
 	det_params = {'shot_noise' :  'Gaussian',
               'G1'         :  1,
-              'qe_response' : [f'{data_path}/data/INSIST/UV/QE.dat,1,100'].
+              'qe_response' : [f'{data_path}/data/INSIST/UV/QE.dat,1,100'],
               'PRNU_frac'  :  0.25/100,
               'RN'         :  3,
               'T'          :  218,        
