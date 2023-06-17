@@ -86,7 +86,6 @@ if submit_button:
              'coeffs'       : 1, #0.17   
              'theta'        : 0                  
             } 
-	st.write(exp_time)
 	sim = pis.Imager(df=df, exp_time = exp_time, tel_params = tel_params, n_x = n_x, n_y = n_y)
 	det_params = {'shot_noise' :  'Gaussian',
               'G1'         :  1,
@@ -102,7 +101,7 @@ if submit_button:
 		img = st.pyplot(fig=fig)
 		
 	with c3:	
-		fig, ax = sim.show_field()
+		fig, ax = sim.show_field(figsize=(12,10))
 		img2 = st.pyplot(fig=fig)
 		
 		fig, ax = sim.show_hist()
