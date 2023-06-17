@@ -82,15 +82,15 @@ if submit_button:
             'response_funcs' :  [ f'{data_path}/data/INSIST/UV/Filter.dat,1,100',    
                                   f'{data_path}/data/INSIST/UV/Coating.dat,5,100',   # 6 mirrors
                                   f'{data_path}/data/INSIST/UV/Dichroic.dat,2,100',   # 2 dichroics
-                                  f'{data_path}/data/INSIST/UV/QE.dat,1,100'
                                 ],        
              'coeffs'       : 1, #0.17   
              'theta'        : 0                  
             } 
 	st.write(exp_time)
-	sim = pis.Imager(df=df, tel_exp_time = exp_time, tel_params = tel_params, n_x = n_x, n_y = n_y)
+	sim = pis.Imager(df=df, exp_time = exp_time, tel_params = tel_params, n_x = n_x, n_y = n_y)
 	det_params = {'shot_noise' :  'Gaussian',
               'G1'         :  1,
+              'qe_response' : [f'{data_path}/data/INSIST/UV/QE.dat,1,100'].
               'PRNU_frac'  :  0.25/100,
               'RN'         :  3,
               'T'          :  218,        
