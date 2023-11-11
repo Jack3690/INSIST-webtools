@@ -9,13 +9,13 @@ from astropy.table import Table
 from astropy.io import fits
 
 import matplotlib.pyplot as plt
+from matplotlib.ticker import (MultipleLocator, AutoLocator, AutoMinorLocator)
 import seaborn as sb
 from astropy.modeling import fitting, models
 from scipy.integrate import quadrature,trapz
 import matplotlib
 
 data_path = pt.data_dir
-sb.set_style('dark')
 matplotlib.rcParams['font.size']=12
 matplotlib.rcParams['figure.figsize']=(10,10)
 
@@ -134,13 +134,18 @@ if submit_button:
 		     'coeffs'       : 1,
 		     'theta'        : 0                  
 		    }
-	st.write(tel_params)
 	plot = True
 	wav = np.linspace(1000, 10000, 10000)
 	flux = 3631/(3.34e4*wav**2)
 	fig, ax, _, params = bandpass(wav, flux, tel_params['response_funcs'],
 				  plot=plot)
+	ax.xaxis.set_minor_locator(AutoMinorLocator())
+	ax.yaxis.set_minor_locator(AutoMinorLocator())
 	
+	ax.tick_params(which='both', width=2,direction="in", top = True,right = True,
+	               bottom = True, left = True)
+	ax.tick_params(which='major', length=7,direction="in")
+	ax.tick_params(which='minor', length=4, color='black',direction="in")
 	lambda_phot, int_flux, int_flux_Jy, W_eff, flux_ratio = params
 	
 	st.write(np.pi*(100/2)**2,flux_ratio, lambda_phot,int_flux_Jy)
