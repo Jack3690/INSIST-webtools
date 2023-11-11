@@ -128,7 +128,7 @@ if submit_button:
 		    'response_funcs' :  [ f'{data_path}/INSIST/UV/Coating.dat,5,100', 
 			    		  f'{data_path}/INSIST/UV/Filter.dat,1,100',    
 					  f'{data_path}/INSIST/UV/Dichroic.dat,2,100',
-					  f'{data_path}/INSIST/UV/Dichroic.dat,2,100'
+					  f'{data_path}/INSIST/UV/QE.dat,2,100'
 					 
 					],        
 		     'coeffs'       : 1,
