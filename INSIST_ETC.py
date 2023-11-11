@@ -188,8 +188,8 @@ if submit_button:
 		
 		st.pyplot(fig)
 
-		for i, value in params.items():
-			st.caption(f"{i} : ",end='')
+		for i, value in params.items()[:3]:
+			st.caption(f"{i} : ")
 			st.text(f"{value}")
 	with c3:	
 		
