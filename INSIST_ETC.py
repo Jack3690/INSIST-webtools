@@ -104,7 +104,7 @@ if submit_button:
 		     'coeffs'       : 1,
 		     'theta'        : 0                  
 		            }
-	elif filter ==='u' :
+	elif filter =='u' :
 		tel_params ={
 		    'aperture'       : 100,
 		    'pixel_scale'    : 0.1,
