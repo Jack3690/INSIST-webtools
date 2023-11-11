@@ -137,8 +137,7 @@ if submit_button:
 	st.write(tel_params)
 	plot = True
 	wav = np.linspace(1000, 10000, 10000)
-    	flux = 3631/(3.34e4*wav**2)
-	
+	flux = 3631/(3.34e4*wav**2)
 	fig, ax, _, params = bandpass(wav, flux, tel_params['response_funcs'],
 				  plot=plot)
 	
