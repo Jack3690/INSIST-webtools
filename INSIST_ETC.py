@@ -152,18 +152,20 @@ if submit_button:
               'DN'         :  0.01/100
               }
 	sim(det_params=det_params, photometry = None)
-	det_params = {}
+	params = {}
 	
-	det_params['wavelength'] = sim.lambda_phot
-	det_params['bandwidth'] = sim.W_eff
-	det_params['effective_area'] = np.pi*(100/2)**2*sim.flux_ratio
-	det_params['sky_brightness'] = sim.det_params['M_sky']
-	det_params['plate_scale'] = sim.pixel_scale
-	det_params['aperture'] = 0.6
-	det_params['dark_current'] = np.mean(sim.DR)
-	det_params['read_noise'] = sim.det_params['RN']
+	params['wavelength'] = sim.lambda_phot
+	params['bandwidth'] = sim.W_eff
+	params['effective_area'] = np.pi*(100/2)**2*sim.flux_ratio
+	params['sky_brightness'] = sim.det_params['M_sky']
+	params['plate_scale'] = sim.pixel_scale
+	params['aperture'] = 0.6
+	params['dark_current'] = np.mean(sim.DR)
+	params['read_noise'] = sim.det_params['RN']
 
-	exp_time = float(exposure_time(det_params,mag,SNR))
+	st.write(params)
+
+	exp_time = float(exposure_time(params,mag,SNR))
 	sim = pt.Imager(df, tel_params=tel_params, n_x=100, n_y=100, exp_time=exp_time)
 	sim.QE = False
 	sim(det_params=det_params, photometry = None)
@@ -176,7 +178,7 @@ if submit_button:
 		flux = 3631/(3.34e4*wav**2)   # AB flux
 		
 		fig, ax, _, params = bandpass(wav, flux, sim.response_funcs,
-		plot=plTrueot)
+		plot=True)
 		
 		lambda_phot, int_flux, int_flux_Jy, W_eff, flux_ratio = params
 		ax.xaxis.set_minor_locator(AutoMinorLocator())
