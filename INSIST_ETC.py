@@ -187,13 +187,14 @@ if submit_button:
 		ax.tick_params(which='minor', length=4, color='black',direction="in")
 		
 		st.pyplot(fig)
+
+		for i, value in params.items():
+			st.caption(f"{i} : ",end='')
+			st.text(f"{value}")
 	with c3:	
 		
 		fig, ax = sim.show_image(show_wcs=False)
 		ax.set_title(None)
 		fig.suptitle("2D SNR Output [ADUs]",fontsize=40)
 		st.pyplot(fig)
-		for i, value in params.items():
-			st.caption(f"{i} : ")
-			st.text(f"{value}")
 		
