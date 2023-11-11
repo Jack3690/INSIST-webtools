@@ -171,9 +171,9 @@ if submit_button:
 	sim(det_params=det_params, photometry = 'Aper', fwhm=1.5)
 	st.write(sim.phot_table)
 	with c2:
-		wav = np.linspace(1000, 10000, 10000)
+		wav = np.arange(1000, 8000, 1)
 		flux = 3631/(3.34e4*wav**2)   # AB flux
-		fig = plt.figure(figsize=15,5))
+		fig = plt.figure(figsize=(15,5))
 		fig, ax, _, params = bandpass(wav, flux, sim.response_funcs,fig=fig,
 		plot=True)
 
