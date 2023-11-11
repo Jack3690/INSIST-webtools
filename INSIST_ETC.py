@@ -188,13 +188,11 @@ if submit_button:
 		
 		st.pyplot(fig)
 
-		text = ""
-		for i, value in params.items():
-			if i=='plate_scale':
-				break
-			if i == 'wavelength':
-				text+= "Central"
-			text += f"**{i.capitalize()}** : {np.round(value,2)} "
+		text = "**Central Wavelength** : {np.round(params['wavelength'],2)v" + r"$\AA$"
+		text += " **Bandwidth** : {np.round(params['bandwidth'],2) " + r"$\AA$"
+		text += " **Effective area** : {np.round(params['effective_area'],2) " + r"$cm^2$"
+		text += " **Sky magnitude** : {np.round(params['sky_brightness'],2) "
+			
 		st.caption(text)
 	with c3:	
 		fig, ax = sim.show_image(show_wcs=False)
