@@ -17,7 +17,7 @@ import matplotlib
 
 sb.set_style('white')
 data_path = pt.data_dir
-matplotlib.rcParams['font.size']=30
+matplotlib.rcParams['font.size']=20
 matplotlib.rcParams['figure.figsize']=(10,10)
 
 
