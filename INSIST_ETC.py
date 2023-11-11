@@ -173,11 +173,11 @@ if submit_button:
 	with c2:
 		wav = np.linspace(1000, 10000, 10000)
 		flux = 3631/(3.34e4*wav**2)   # AB flux
-		
-		fig, ax, _, params = bandpass(wav, flux, sim.response_funcs,
+		fig = plt.figure(figsize=15,5))
+		fig, ax, _, params = bandpass(wav, flux, sim.response_funcs,fig=fig,
 		plot=True)
 
-		st.header(f'Exposure time required for {mag} magnitude star with SNR = {SNR}: {exp_time}')
+		st.text(f'Exposure time required for {mag} magnitude star with SNR = {SNR}: {exp_time}')
 		
 		lambda_phot, int_flux, int_flux_Jy, W_eff, flux_ratio = params
 		
@@ -195,7 +195,7 @@ if submit_button:
 	with c3:	
 		
 		fig, ax = sim.show_image(show_wcs=False)
-		ax.set_title("")
-		fig.suptitle("2D SNR Output [ADUs]",fontsize=20)
+		ax.set_title(None)
+		fig.suptitle("2D SNR Output [ADUs]",fontsize=40)
 		st.pyplot(fig)
 		
