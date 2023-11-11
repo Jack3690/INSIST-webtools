@@ -101,7 +101,7 @@ if submit_button:
 		    'pixel_scale'    : 0.1,
 		    'psf_file'       : f'{data_path}/PSF/INSIST/off_axis_poppy.npy',
 		    'response_funcs' :  [ f'{data_path}/INSIST/G/M1.dat,5,100', 
-					  f'{data_path}/INSIST/G/Dichroic.dat,2,100',
+					  f'{data_path}/INSIST/G/Dichroic.dat,1,100',
 					  f'{data_path}/INSIST/G/Filter.dat,1,100',      # 6 mirrors
 					  f'{data_path}/INSIST/G/QE.dat,1,100',
 					],        
@@ -115,14 +115,14 @@ if submit_button:
 		    'psf_file'       : f'{data_path}/PSF/INSIST/off_axis_poppy.npy',
 		    'response_funcs' :  [ f'{data_path}/INSIST/U/M1.dat,5,100', 
 					  f'{data_path}/INSIST/U/Dichroic.dat,2,100',
-					  f'{data_path}/INSIST/U/Filter.dat,1,100',      # 6 mirrors
+					  f'{data_path}/INSIST/U/Filter.dat,,100',      # 6 mirrors
 					  f'{data_path}/INSIST/U/QE.dat,1,100',
 					],        
 		     'coeffs'       : 1,
 		     'theta'        : 0                  
 		    }
 	elif filter=='UV':
-		tel_params ={
+		tel_params = {
 		    'aperture'       : 100,
 		    'pixel_scale'    : 0.1,
 		    'psf_file'       : f'{data_path}/PSF/INSIST/off_axis_poppy.npy',
@@ -134,25 +134,58 @@ if submit_button:
 					],        
 		     'coeffs'       : 1,
 		     'theta'        : 0                  
-		    }
-	plot = True
-	wav = np.arange(1000, 8000, 1)
-	flux = 3631/(3.34e4*wav**2)
-	fig, ax, _, params = bandpass(wav, flux, tel_params['response_funcs'],
-				  plot=plot)
-	ax.xaxis.set_minor_locator(AutoMinorLocator())
-	ax.yaxis.set_minor_locator(AutoMinorLocator())
+		    }	
+	df = pd.DataFrame()
+	df['ra']=0
+	df['dec']=0
+	df['mag']=mag
 	
-	ax.tick_params(which='both', width=2,direction="in", top = True,right = True,
-	               bottom = True, left = True)
-	ax.tick_params(which='major', length=7,direction="in")
-	ax.tick_params(which='minor', length=4, color='black',direction="in")
-	lambda_phot, int_flux, int_flux_Jy, W_eff, flux_ratio = params
+	sim = pt.Imager(df, tel_params=tel_params, n_x=100, n_y=100, exp_time=100)
+	det_params = {'shot_noise' :  'Poisson',
+              'qe_response': [],
+              'qe_mean'    : 0.95,
+              'G1'         :  1,
+              'bias'       :  50,
+              'PRNU_frac'  :  0.25/100,
+              'RN'         :  3,
+              'T'          :  218,
+              'DN'         :  0.01/100
+              }
+	sim(det_params=det_params, photometry = None)
+	det_params = {}
 	
-	st.write(np.pi*(100/2)**2*flux_ratio, lambda_phot,W_eff)
+	det_params['wavelength'] = sim.lambda_phot
+	det_params['bandwidth'] = sim.W_eff
+	det_params['effective_area'] = np.pi*(100/2)**2*sim.flux_ratio
+	det_params['sky_brightness'] = sim.det_params['M_sky']
+	det_params['plate_scale'] = sim.pixel_scale
+	det_params['aperture'] = 0.6
+	det_params['dark_current'] = np.mean(sim.DR)
+	det_params['read_noise'] = sim.det_params['RN']
+
+	exp_time = exposure_time(det_params,mag,SNR)
+	sim = pt.Imager(df, tel_params=tel_params, n_x=100, n_y=100, exp_time=exp_time)
+	sim(det_params=det_params, photometry = None)
 	with c2:
-	    st.pyplot(fig)
-		
+		fig, ax = sim.show_image()
+		st.pyplot(fig)
 	with c3:	
-	    fig, ax = plt.subplots(figsize=(12,10))
-	    st.pyplot(fig)
+		wav = np.linspace(1000, 10000, 10000)
+		flux = 3631/(3.34e4*wav**2)   # AB flux
+		
+		fig, ax, _, params = bandpass(wav, flux, sim.response_funcs,
+		plot=plot)
+		
+		lambda_phot, int_flux, int_flux_Jy, W_eff, flux_ratio = params
+		ax.xaxis.set_minor_locator(AutoMinorLocator())
+		ax.yaxis.set_minor_locator(AutoMinorLocator())
+		
+		ax.tick_params(which='both', width=2,direction="in", top = True,right = True,
+		bottom = True, left = True)
+		ax.tick_params(which='major', length=7,direction="in")
+		ax.tick_params(which='minor', length=4, color='black',direction="in")
+		
+		st.write(np.pi*(100/2)**2*sim.flux_ratio, sim.lambda_phot, sim.W_eff)
+		
+		st.pyplot(fig)
+	
