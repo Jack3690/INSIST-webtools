@@ -163,8 +163,6 @@ if submit_button:
 	params['dark_current'] = np.mean(sim.DR)
 	params['read_noise'] = sim.det_params['RN']
 
-	st.write(params)
-
 	exp_time = float(exposure_time(params,mag,SNR))
 	sim = pt.Imager(df, tel_params=tel_params, n_x=51, n_y=51, exp_time=exp_time)
 	sim.QE = False
@@ -195,6 +193,6 @@ if submit_button:
 		ax.set_title(None)
 		fig.suptitle("2D SNR Output [ADUs]",fontsize=40)
 		st.pyplot(fig)
-		for i, value in params.item():
+		for i, value in params.items():
 			st.subheader(f"{i} : {value}")
 		
