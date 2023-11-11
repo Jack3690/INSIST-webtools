@@ -97,9 +97,10 @@ if submit_button:
 		    'aperture'       : 100,
 		    'pixel_scale'    : 0.1,
 		    'psf_file'       : f'{data_path}/data/PSF/INSIST/off_axis_poppy.npy',
-		    'response_funcs' :  [ f'{data_path}/data/INSIST/UV/Filter.dat,1,100',    
-					  f'{data_path}/data/INSIST/UV/Coating.dat,5,100',   # 6 mirrors
-					  f'{data_path}/data/INSIST/UV/Dichroic.dat,2,100',   # 2 dichroics
+		    'response_funcs' :  [ f'{data_path}/data/INSIST/G/M1.dat,5,100', 
+					  f'{data_path}/data/INSIST/G/Dichroic.dat,2,100',
+					  f'{data_path}/data/INSIST/G/Filter.dat,1,100',      # 6 mirrors
+					  f'{data_path}/data/INSIST/G/QE.dat,1,100',
 					],        
 		     'coeffs'       : 1,
 		     'theta'        : 0                  
@@ -109,9 +110,10 @@ if submit_button:
 		    'aperture'       : 100,
 		    'pixel_scale'    : 0.1,
 		    'psf_file'       : f'{data_path}/data/PSF/INSIST/off_axis_poppy.npy',
-		    'response_funcs' :  [ f'{data_path}/data/INSIST/UV/Filter.dat,1,100',    
-					  f'{data_path}/data/INSIST/UV/Coating.dat,5,100',   # 6 mirrors
-					  f'{data_path}/data/INSIST/UV/Dichroic.dat,2,100',   # 2 dichroics
+		    'response_funcs' :  [ f'{data_path}/data/INSIST/U/M1.dat,5,100', 
+					  f'{data_path}/data/INSIST/U/Dichroic.dat,2,100',
+					  f'{data_path}/data/INSIST/U/Filter.dat,1,100',      # 6 mirrors
+					  f'{data_path}/data/INSIST/U/QE.dat,1,100',
 					],        
 		     'coeffs'       : 1,
 		     'theta'        : 0                  
@@ -121,9 +123,11 @@ if submit_button:
 		    'aperture'       : 100,
 		    'pixel_scale'    : 0.1,
 		    'psf_file'       : f'{data_path}/data/PSF/INSIST/off_axis_poppy.npy',
-		    'response_funcs' :  [ f'{data_path}/data/INSIST/UV/Filter.dat,1,100',    
-					  f'{data_path}/data/INSIST/UV/Coating.dat,5,100',   # 6 mirrors
-					  f'{data_path}/data/INSIST/UV/Dichroic.dat,2,100',   # 2 dichroics
+		    'response_funcs' :  [ f'{data_path}/data/INSIST/UV/Coating.dat,5,100', 
+			    		  f'{data_path}/data/INSIST/UV/Filter.dat,1,100',    
+					  f'{data_path}/data/INSIST/UV/Dichroic.dat,2,100',
+					  f'{data_path}/data/INSIST/UV/Dichroic.dat,2,100'
+					 
 					],        
 		     'coeffs'       : 1,
 		     'theta'        : 0                  
