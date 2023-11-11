@@ -168,8 +168,7 @@ if submit_button:
 	exp_time = float(exposure_time(params,mag,SNR))
 	sim = pt.Imager(df, tel_params=tel_params, n_x=51, n_y=51, exp_time=exp_time)
 	sim.QE = False
-	sim(det_params=det_params, photometry = 'Aper', fwhm=1.5)
-	st.write(sim.phot_table)
+	sim(det_params=det_params, photometry = None, fwhm=1.5)
 	with c2:
 		wav = np.arange(1000, 8000, 1)
 		flux = 3631/(3.34e4*wav**2)   # AB flux
@@ -189,8 +188,6 @@ if submit_button:
 		ax.tick_params(which='major', length=7,direction="in")
 		ax.tick_params(which='minor', length=4, color='black',direction="in")
 		
-		st.write(np.pi*(100/2)**2*sim.flux_ratio, sim.lambda_phot, sim.W_eff)
-		
 		st.pyplot(fig)
 	with c3:	
 		
@@ -198,4 +195,6 @@ if submit_button:
 		ax.set_title(None)
 		fig.suptitle("2D SNR Output [ADUs]",fontsize=40)
 		st.pyplot(fig)
+		for i, value in params.item():
+			st.subheader(f"{i} : {value}")
 		
