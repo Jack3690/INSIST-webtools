@@ -92,43 +92,42 @@ with st.form(key="my_form"):
 		submit_button = st.form_submit_button(label="✨ Generate Image")
 
 if submit_button:
-	match filter:
-		case 'g' :
-			tel_params ={
-		            'aperture'       : 100,
-		            'pixel_scale'    : 0.1,
-		            'psf_file'       : f'{data_path}/data/PSF/INSIST/off_axis_poppy.npy',
-		            'response_funcs' :  [ f'{data_path}/data/INSIST/UV/Filter.dat,1,100',    
-		                                  f'{data_path}/data/INSIST/UV/Coating.dat,5,100',   # 6 mirrors
-		                                  f'{data_path}/data/INSIST/UV/Dichroic.dat,2,100',   # 2 dichroics
-		                                ],        
-		             'coeffs'       : 1,
-		             'theta'        : 0                  
+	if filter == 'g' :
+		tel_params ={
+		    'aperture'       : 100,
+		    'pixel_scale'    : 0.1,
+		    'psf_file'       : f'{data_path}/data/PSF/INSIST/off_axis_poppy.npy',
+		    'response_funcs' :  [ f'{data_path}/data/INSIST/UV/Filter.dat,1,100',    
+					  f'{data_path}/data/INSIST/UV/Coating.dat,5,100',   # 6 mirrors
+					  f'{data_path}/data/INSIST/UV/Dichroic.dat,2,100',   # 2 dichroics
+					],        
+		     'coeffs'       : 1,
+		     'theta'        : 0                  
 		            }
-		case 'u' :
-			tel_params ={
-		            'aperture'       : 100,
-		            'pixel_scale'    : 0.1,
-		            'psf_file'       : f'{data_path}/data/PSF/INSIST/off_axis_poppy.npy',
-		            'response_funcs' :  [ f'{data_path}/data/INSIST/UV/Filter.dat,1,100',    
-		                                  f'{data_path}/data/INSIST/UV/Coating.dat,5,100',   # 6 mirrors
-		                                  f'{data_path}/data/INSIST/UV/Dichroic.dat,2,100',   # 2 dichroics
-		                                ],        
-		             'coeffs'       : 1,
-		             'theta'        : 0                  
-		            }
-		case 'UV':
-			tel_params ={
-		            'aperture'       : 100,
-		            'pixel_scale'    : 0.1,
-		            'psf_file'       : f'{data_path}/data/PSF/INSIST/off_axis_poppy.npy',
-		            'response_funcs' :  [ f'{data_path}/data/INSIST/UV/Filter.dat,1,100',    
-		                                  f'{data_path}/data/INSIST/UV/Coating.dat,5,100',   # 6 mirrors
-		                                  f'{data_path}/data/INSIST/UV/Dichroic.dat,2,100',   # 2 dichroics
-		                                ],        
-		             'coeffs'       : 1,
-		             'theta'        : 0                  
-		            }
+	elif filter ==='u' :
+		tel_params ={
+		    'aperture'       : 100,
+		    'pixel_scale'    : 0.1,
+		    'psf_file'       : f'{data_path}/data/PSF/INSIST/off_axis_poppy.npy',
+		    'response_funcs' :  [ f'{data_path}/data/INSIST/UV/Filter.dat,1,100',    
+					  f'{data_path}/data/INSIST/UV/Coating.dat,5,100',   # 6 mirrors
+					  f'{data_path}/data/INSIST/UV/Dichroic.dat,2,100',   # 2 dichroics
+					],        
+		     'coeffs'       : 1,
+		     'theta'        : 0                  
+		    }
+	elif filter=='UV':
+		tel_params ={
+		    'aperture'       : 100,
+		    'pixel_scale'    : 0.1,
+		    'psf_file'       : f'{data_path}/data/PSF/INSIST/off_axis_poppy.npy',
+		    'response_funcs' :  [ f'{data_path}/data/INSIST/UV/Filter.dat,1,100',    
+					  f'{data_path}/data/INSIST/UV/Coating.dat,5,100',   # 6 mirrors
+					  f'{data_path}/data/INSIST/UV/Dichroic.dat,2,100',   # 2 dichroics
+					],        
+		     'coeffs'       : 1,
+		     'theta'        : 0                  
+		    }
 	st.write(tel_params)
 
 	with c2:
