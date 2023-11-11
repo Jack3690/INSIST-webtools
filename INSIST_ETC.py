@@ -136,7 +136,7 @@ if submit_button:
 		     'theta'        : 0                  
 		    }
 	plot = True
-	wav = np.linspace(1000, 10000, 10000)
+	wav = np.arange(1000, 8000, 1)
 	flux = 3631/(3.34e4*wav**2)
 	fig, ax, _, params = bandpass(wav, flux, tel_params['response_funcs'],
 				  plot=plot)
