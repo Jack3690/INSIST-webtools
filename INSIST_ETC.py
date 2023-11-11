@@ -2,6 +2,8 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import pista as pt
+from pista.utils import bandpass
+
 from pathlib import Path
 from astropy.table import Table
 from astropy.io import fits
@@ -133,7 +135,13 @@ if submit_button:
 		     'theta'        : 0                  
 		    }
 	st.write(tel_params)
-
+	plot = True
+	fig, ax, _, params = bandpass(wav, flux, tel_params['response_funcs'],
+				  plot=plot)
+	
+	lambda_phot, int_flux, int_flux_Jy, W_eff, flux_ratio = params
+	
+	st.write(np.pi*(100/2)**2*flux_ratio)
 	with c2:
 	    fig, ax = plt.subplots(figsize=(12,10))
 	    st.pyplot(fig)
