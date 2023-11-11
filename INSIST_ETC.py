@@ -95,6 +95,7 @@ with st.form(key="my_form"):
 		submit_button = st.form_submit_button(label="✨ Generate Image")
 
 if submit_button:
+	st.write(filter)
 	tel_params ={
             'aperture'       : 100,
             'pixel_scale'    : 0.1,
@@ -108,9 +109,9 @@ if submit_button:
             } 
 
 	with c2:
-	    fig, ax = sim.show_field(figsize=(12,10))
+	    fig, ax = plt.subplots(figsize=(12,10))
 	    st.pyplot(fig)
 		
 	with c3:	
-	    fig, ax = sim.show_field(figsize=(12,10))
+	    fig, ax = plt.subplots(figsize=(12,10))
 	    st.pyplot(fig)
