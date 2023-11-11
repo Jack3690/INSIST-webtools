@@ -143,7 +143,7 @@ if submit_button:
 	
 	lambda_phot, int_flux, int_flux_Jy, W_eff, flux_ratio = params
 	
-	st.write(np.pi*(100/2)**2*flux_ratio)
+	st.write(np.pi*(100/2)**2*,flux_ratio, lambda_phot,int_flux_Jy)
 	with c2:
 	    st.pyplot(fig)
 		
