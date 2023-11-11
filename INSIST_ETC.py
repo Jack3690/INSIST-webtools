@@ -15,6 +15,7 @@ from astropy.modeling import fitting, models
 from scipy.integrate import quadrature,trapz
 import matplotlib
 
+sb.set_style('white')
 data_path = pt.data_dir
 matplotlib.rcParams['font.size']=12
 matplotlib.rcParams['figure.figsize']=(10,10)
@@ -102,7 +103,7 @@ if submit_button:
 		    'response_funcs' :  [ f'{data_path}/INSIST/G/M1.dat,5,100', 
 					  f'{data_path}/INSIST/G/Dichroic.dat,2,100',
 					  f'{data_path}/INSIST/G/Filter.dat,1,100',      # 6 mirrors
-					  f'{data_path}/INSIST/G/QE.dat,1,100',
+					#  f'{data_path}/INSIST/G/QE.dat,1,100',
 					],        
 		     'coeffs'       : 1,
 		     'theta'        : 0                  
@@ -115,7 +116,7 @@ if submit_button:
 		    'response_funcs' :  [ f'{data_path}/INSIST/U/M1.dat,5,100', 
 					  f'{data_path}/INSIST/U/Dichroic.dat,2,100',
 					  f'{data_path}/INSIST/U/Filter.dat,1,100',      # 6 mirrors
-					  f'{data_path}/INSIST/U/QE.dat,1,100',
+					#  f'{data_path}/INSIST/U/QE.dat,1,100',
 					],        
 		     'coeffs'       : 1,
 		     'theta'        : 0                  
@@ -128,7 +129,7 @@ if submit_button:
 		    'response_funcs' :  [ f'{data_path}/INSIST/UV/Coating.dat,5,100', 
 			    		  f'{data_path}/INSIST/UV/Filter.dat,1,100',    
 					  f'{data_path}/INSIST/UV/Dichroic.dat,2,100',
-					  f'{data_path}/INSIST/UV/QE.dat,2,100'
+					#  f'{data_path}/INSIST/UV/QE.dat,2,100'
 					 
 					],        
 		     'coeffs'       : 1,
@@ -148,7 +149,7 @@ if submit_button:
 	ax.tick_params(which='minor', length=4, color='black',direction="in")
 	lambda_phot, int_flux, int_flux_Jy, W_eff, flux_ratio = params
 	
-	st.write(np.pi*(100/2)**2,flux_ratio, lambda_phot,int_flux_Jy)
+	st.write(np.pi*(100/2)**2,flux_ratio, lambda_phot,W_eff)
 	with c2:
 	    st.pyplot(fig)
 		
