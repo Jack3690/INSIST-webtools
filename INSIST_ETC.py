@@ -82,7 +82,7 @@ with st.form(key="my_form"):
 		SNR = st.number_input(
 			    "SNR",
 			    min_value=1.,
-          value=5.,
+          		    value=5.,
 			    max_value=10000.)
 		
 		mag = st.number_input(
@@ -143,7 +143,7 @@ if submit_button:
 	sim = pt.Imager(df, tel_params=tel_params, n_x=100, n_y=100, exp_time=100)
 	det_params = {'shot_noise' :  'Poisson',
               'qe_response': [],
-              'qe_mean'    : 0.95,
+              'qe_mean'    :  1,
               'G1'         :  1,
               'bias'       :  50,
               'PRNU_frac'  :  0.25/100,
@@ -165,6 +165,7 @@ if submit_button:
 
 	exp_time = float(exposure_time(det_params,mag,SNR))
 	sim = pt.Imager(df, tel_params=tel_params, n_x=100, n_y=100, exp_time=exp_time)
+	sim.QE = False
 	sim(det_params=det_params, photometry = None)
 	with c2:
 		fig, ax = sim.show_image()
@@ -175,7 +176,7 @@ if submit_button:
 		flux = 3631/(3.34e4*wav**2)   # AB flux
 		
 		fig, ax, _, params = bandpass(wav, flux, sim.response_funcs,
-		plot=plot)
+		plot=plTrueot)
 		
 		lambda_phot, int_flux, int_flux_Jy, W_eff, flux_ratio = params
 		ax.xaxis.set_minor_locator(AutoMinorLocator())
