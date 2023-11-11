@@ -1,12 +1,17 @@
-import numpy as np
+import streamlit as st
 import pandas as pd
-import matplotlib
+import numpy as np
+import pista as pt
+from pathlib import Path
+from astropy.table import Table
+from astropy.io import fits
+from matplotlib import colors as col
 import matplotlib.pyplot as plt
-import seaborn as sb
-from astropy.modeling import fitting, models
 
+from astropy.modeling import fitting, models
 from scipy.integrate import quadrature,trapz
 
+data_path = pt.data_dir
 sb.set_style('dark')
 matplotlib.rcParams['font.size']=12
 matplotlib.rcParams['figure.figsize']=(10,10)
@@ -46,3 +51,65 @@ def exposure_time(det_params,M,SNR):
   t = np.where(t1>0,t1/60,t2/60)
   
   return t
+
+
+st.set_page_config(
+    page_title="INSIST ETC",
+    layout="wide"
+)
+
+data_path = Path(pis.__file__).parent.joinpath()
+
+st.title("INSIST-Exposure Time Calculator")
+st.header("A basic exposure time calculator for the INdian Spectroscopic and Imaging Space Telescope")
+
+with st.expander("ℹ️ - About this app", expanded=True):
+
+    st.write(
+        """     
+   	This webtool is based on preliminary design for INSIST.
+	    """
+    )
+
+    st.markdown("")
+
+with st.form(key="my_form"):
+	c1, c2, c3 = st.columns([ 1, 2,0.8])
+	with c1:
+		filter = st.selectbox('Filter',
+                          ('g', 'u', 'UV'))
+		SNR = st.number_input(
+			    "SNR",
+			    min_value=1.,
+          value=5.,
+			    max_value=10000.)
+		
+		mag = st.number_input(
+			    "mag",
+			    value =20,
+			    min_value=0,
+			    max_value=35,
+          help="Magnitude in AB system")
+		
+		submit_button = st.form_submit_button(label="✨ Generate Image")
+
+if submit_button:
+	tel_params ={
+            'aperture'       : 100,
+            'pixel_scale'    : 0.1,
+            'psf_file'       : f'{data_path}/data/PSF/INSIST/off_axis_poppy.npy',
+            'response_funcs' :  [ f'{data_path}/data/INSIST/UV/Filter.dat,1,100',    
+                                  f'{data_path}/data/INSIST/UV/Coating.dat,5,100',   # 6 mirrors
+                                  f'{data_path}/data/INSIST/UV/Dichroic.dat,2,100',   # 2 dichroics
+                                ],        
+             'coeffs'       : 1, #0.17   
+             'theta'        : 0                  
+            } 
+
+	with c2:
+    fig, ax = sim.show_field(figsize=(12,10))
+    st.pyplot(fig)
+		
+	with c3:	
+    fig, ax = sim.show_field(figsize=(12,10))
+    st.pyplot(fig)
