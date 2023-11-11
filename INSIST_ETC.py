@@ -7,7 +7,7 @@ from astropy.table import Table
 from astropy.io import fits
 from matplotlib import colors as col
 import matplotlib.pyplot as plt
-
+import seaborn as sb
 from astropy.modeling import fitting, models
 from scipy.integrate import quadrature,trapz
 
