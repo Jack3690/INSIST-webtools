@@ -192,10 +192,9 @@ if submit_button:
 		for i, value in params.items():
 			if i=='plate_scale':
 				break
-			text += r"\textbf{" + f"{i}" + "}: " + "{value} "
+			text += f"**{i}** :{value} "
 		st.caption(text)
 	with c3:	
-		
 		fig, ax = sim.show_image(show_wcs=False)
 		ax.set_title(None)
 		fig.suptitle("2D SNR Output [ADUs]",fontsize=40)
