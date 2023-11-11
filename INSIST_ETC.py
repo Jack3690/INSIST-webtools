@@ -126,10 +126,10 @@ if submit_button:
 		    'aperture'       : 100,
 		    'pixel_scale'    : 0.1,
 		    'psf_file'       : f'{data_path}/PSF/INSIST/off_axis_poppy.npy',
-		    'response_funcs' :  [ f'{data_path}/INSIST/UV/Coating.dat,5,100', 
-			    		  f'{data_path}/INSIST/UV/Filter.dat,1,100',    
-					  f'{data_path}/INSIST/UV/Dichroic.dat,2,100',
-					#  f'{data_path}/INSIST/UV/QE.dat,2,100'
+		    'response_funcs' :  [# f'{data_path}/INSIST/UV/Coating.dat,5,100', 
+					  #f'{data_path}/INSIST/UV/Dichroic.dat,2,100',
+			    		  #f'{data_path}/INSIST/UV/Filter.dat,1,100', 
+					   f'{data_path}/INSIST/UV/QE.dat,1,100'
 					 
 					],        
 		     'coeffs'       : 1,
