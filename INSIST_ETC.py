@@ -140,7 +140,7 @@ if submit_button:
 	df['dec']=[0,0]
 	df['mag']= [mag,100]
 	
-	sim = pt.Imager(df, tel_params=tel_params, n_x=100, n_y=100, exp_time=600)
+	sim = pt.Imager(df, tel_params=tel_params, n_x=51, n_y=51, exp_time=600)
 	det_params = {'shot_noise' :  'Poisson',
               'qe_response': [],
               'qe_mean'    :  1,
@@ -166,14 +166,11 @@ if submit_button:
 	st.write(params)
 
 	exp_time = float(exposure_time(params,mag,SNR))
-	sim = pt.Imager(df, tel_params=tel_params, n_x=100, n_y=100, exp_time=exp_time)
+	sim = pt.Imager(df, tel_params=tel_params, n_x=51, n_y=51, exp_time=exp_time)
 	sim.QE = False
-	sim(det_params=det_params, photometry = None)
+	sim(det_params=det_params, photometry = 'Aper', fwhm=1.5)
+	st.write(sim.phot_table)
 	with c2:
-		fig, ax = sim.show_image()
-		fig.suptitle(f"2D SNR for Exposure time {exp_time}")
-		st.pyplot(fig)
-	with c3:	
 		wav = np.linspace(1000, 10000, 10000)
 		flux = 3631/(3.34e4*wav**2)   # AB flux
 		
@@ -181,6 +178,7 @@ if submit_button:
 		plot=True)
 		
 		lambda_phot, int_flux, int_flux_Jy, W_eff, flux_ratio = params
+		
 		ax.xaxis.set_minor_locator(AutoMinorLocator())
 		ax.yaxis.set_minor_locator(AutoMinorLocator())
 		
@@ -192,4 +190,9 @@ if submit_button:
 		st.write(np.pi*(100/2)**2*sim.flux_ratio, sim.lambda_phot, sim.W_eff)
 		
 		st.pyplot(fig)
-	
+	with c3:	
+		
+		fig, ax = sim.show_image()
+		fig.suptitle(f"2D SNR")
+		st.pyplot(fig)
+		
