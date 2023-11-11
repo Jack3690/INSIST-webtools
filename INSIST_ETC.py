@@ -173,12 +173,12 @@ if submit_button:
 		wav = np.arange(1000, 8000, 1)
 		flux = 3631/(3.34e4*wav**2)   # AB flux
 		fig, ax = plt.subplots(figsize=(15,5))
-		fig, ax, _, params = bandpass(wav, flux, sim.response_funcs,fig=fig, ax=ax,
+		fig, ax, _, params_ = bandpass(wav, flux, sim.response_funcs,fig=fig, ax=ax,
 		plot=True)
 
 		st.text(f'Exposure time required for {mag} magnitude star with SNR = {SNR}: {exp_time}')
 		
-		lambda_phot, int_flux, int_flux_Jy, W_eff, flux_ratio = params
+		lambda_phot, int_flux, int_flux_Jy, W_eff, flux_ratio = params_
 		
 		ax.xaxis.set_minor_locator(AutoMinorLocator())
 		ax.yaxis.set_minor_locator(AutoMinorLocator())
