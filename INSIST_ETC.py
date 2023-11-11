@@ -17,6 +17,14 @@ matplotlib.rcParams['font.size']=12
 matplotlib.rcParams['figure.figsize']=(10,10)
 
 
+st.set_page_config(
+    page_title="INSIST ETC",
+    layout="wide"
+)
+st.title("INSIST-Exposure Time Calculator")
+st.header("A basic exposure time calculator for the INdian Spectroscopic and Imaging Space Telescope")
+
+
 def coeff_calc(x0,xn,x=None,y=None,mode = None):
   if mode == 'Gaussian':
     model = models.Gaussian1D(mean = (x0+xn)*0.5, stddev = xn-x0)
@@ -53,15 +61,7 @@ def exposure_time(det_params,M,SNR):
   return t
 
 
-st.set_page_config(
-    page_title="INSIST ETC",
-    layout="wide"
-)
 
-data_path = Path(pis.__file__).parent.joinpath()
-
-st.title("INSIST-Exposure Time Calculator")
-st.header("A basic exposure time calculator for the INdian Spectroscopic and Imaging Space Telescope")
 
 with st.expander("ℹ️ - About this app", expanded=True):
 
