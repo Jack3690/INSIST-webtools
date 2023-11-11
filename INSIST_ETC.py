@@ -176,6 +176,8 @@ if submit_button:
 		
 		fig, ax, _, params = bandpass(wav, flux, sim.response_funcs,
 		plot=True)
+
+		st.header(f'Exposure time required for {mag} magnitude star with SNR = {SNR}: {exp_time}')
 		
 		lambda_phot, int_flux, int_flux_Jy, W_eff, flux_ratio = params
 		
@@ -192,7 +194,8 @@ if submit_button:
 		st.pyplot(fig)
 	with c3:	
 		
-		fig, ax = sim.show_image()
-		fig.suptitle(f"2D SNR")
+		fig, ax = sim.show_image(show_wcs=False)
+		ax.set_title("")
+		fig.suptitle("2D SNR Output [ADUs]",fontsize=20)
 		st.pyplot(fig)
 		
