@@ -165,7 +165,7 @@ if submit_button:
 
 	exp_time = exposure_time(det_params,mag,SNR)
 	sim = pt.Imager(df, tel_params=tel_params, n_x=100, n_y=100, exp_time=exp_time)
-	sim(det_params=det_params, photometry = None)
+	#sim(det_params=det_params, photometry = None)
 	with c2:
 		fig, ax = sim.show_image()
 		st.pyplot(fig)
