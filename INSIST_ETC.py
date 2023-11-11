@@ -136,9 +136,9 @@ if submit_button:
 		     'theta'        : 0                  
 		    }	
 	df = pd.DataFrame()
-	df['ra']=0
-	df['dec']=0
-	df['mag']=mag
+	df['ra']=[0,0]
+	df['dec']=[0,0]
+	df['mag']= [mag,100]
 	
 	sim = pt.Imager(df, tel_params=tel_params, n_x=100, n_y=100, exp_time=100)
 	det_params = {'shot_noise' :  'Poisson',
