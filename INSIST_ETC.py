@@ -194,5 +194,6 @@ if submit_button:
 		fig.suptitle("2D SNR Output [ADUs]",fontsize=40)
 		st.pyplot(fig)
 		for i, value in params.items():
-			st.subheader(f"{i} : {value}")
+			st.caption(f"{i} : ")
+			st.text(f"{value}")
 		
