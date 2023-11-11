@@ -103,7 +103,7 @@ if submit_button:
 		    'response_funcs' :  [ f'{data_path}/INSIST/G/M1.dat,5,100', 
 					  f'{data_path}/INSIST/G/Dichroic.dat,2,100',
 					  f'{data_path}/INSIST/G/Filter.dat,1,100',      # 6 mirrors
-					#  f'{data_path}/INSIST/G/QE.dat,1,100',
+					  f'{data_path}/INSIST/G/QE.dat,1,100',
 					],        
 		     'coeffs'       : 1,
 		     'theta'        : 0                  
@@ -116,7 +116,7 @@ if submit_button:
 		    'response_funcs' :  [ f'{data_path}/INSIST/U/M1.dat,5,100', 
 					  f'{data_path}/INSIST/U/Dichroic.dat,2,100',
 					  f'{data_path}/INSIST/U/Filter.dat,1,100',      # 6 mirrors
-					#  f'{data_path}/INSIST/U/QE.dat,1,100',
+					  f'{data_path}/INSIST/U/QE.dat,1,100',
 					],        
 		     'coeffs'       : 1,
 		     'theta'        : 0                  
