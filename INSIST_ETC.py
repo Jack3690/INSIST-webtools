@@ -192,7 +192,9 @@ if submit_button:
 		for i, value in params.items():
 			if i=='plate_scale':
 				break
-			text += f"**{i}** :{value} "
+			if i == 'wavelength':
+				text+= "Central"
+			text += f"**{i.capitalize()}** : {np.round(value,2)} "
 		st.caption(text)
 	with c3:	
 		fig, ax = sim.show_image(show_wcs=False)
