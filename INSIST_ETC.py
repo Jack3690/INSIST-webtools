@@ -107,9 +107,9 @@ if submit_button:
             } 
 
 	with c2:
-    fig, ax = sim.show_field(figsize=(12,10))
-    st.pyplot(fig)
+	    fig, ax = sim.show_field(figsize=(12,10))
+	    st.pyplot(fig)
 		
 	with c3:	
-    fig, ax = sim.show_field(figsize=(12,10))
-    st.pyplot(fig)
+	    fig, ax = sim.show_field(figsize=(12,10))
+	    st.pyplot(fig)
