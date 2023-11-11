@@ -60,7 +60,7 @@ def exposure_time(det_params,M,SNR):
 
   t1 = (-B + np.sqrt(B**2 - 4*A*C))/(2*A)
   t2 = (-B - np.sqrt(B**2 - 4*A*C))/(2*A)
-  t = np.where(t1>0,t1/60,t2/60)
+  t = np.where(t1>0,t1,t2)
   
   return t
 
@@ -166,9 +166,9 @@ if submit_button:
 	st.write(params)
 
 	exp_time = float(exposure_time(params,mag,SNR))
-	#sim = pt.Imager(df, tel_params=tel_params, n_x=100, n_y=100, exp_time=exp_time)
-	#sim.QE = False
-	#sim(det_params=det_params, photometry = None)
+	sim = pt.Imager(df, tel_params=tel_params, n_x=100, n_y=100, exp_time=exp_time)
+	sim.QE = False
+	sim(det_params=det_params, photometry = None)
 	with c2:
 		fig, ax = sim.show_image()
 		fig.suptitle(f"2D SNR for Exposure time {exp_time}")
