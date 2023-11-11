@@ -188,9 +188,10 @@ if submit_button:
 		
 		st.pyplot(fig)
 
-		for i, value in params.items()[:3]:
-			st.caption(f"{i} : ")
-			st.text(f"{value}")
+		for i, value in params.items():
+			if i=='plate_scale':
+				break
+			st.caption(f"{i} : {value} ")
 	with c3:	
 		
 		fig, ax = sim.show_image(show_wcs=False)
