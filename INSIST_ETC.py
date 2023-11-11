@@ -164,10 +164,11 @@ if submit_button:
 	det_params['read_noise'] = sim.det_params['RN']
 
 	exp_time = exposure_time(det_params,mag,SNR)
-	#sim = pt.Imager(df, tel_params=tel_params, n_x=100, n_y=100, exp_time=exp_time)
-	#sim(det_params=det_params, photometry = None)
+	sim = pt.Imager(df, tel_params=tel_params, n_x=100, n_y=100, exp_time=exp_time[0])
+	sim(det_params=det_params, photometry = None)
 	with c2:
 		fig, ax = sim.show_image()
+		fig.suptitle(f"2D SNR for Exposure time {exp_time[0]}")
 		st.pyplot(fig)
 	with c3:	
 		wav = np.linspace(1000, 10000, 10000)
