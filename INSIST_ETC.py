@@ -140,7 +140,7 @@ if submit_button:
 	df['dec']=[0,0]
 	df['mag']= [mag,100]
 	
-	sim = pt.Imager(df, tel_params=tel_params, n_x=100, n_y=100, exp_time=100)
+	sim = pt.Imager(df, tel_params=tel_params, n_x=100, n_y=100, exp_time=600)
 	det_params = {'shot_noise' :  'Poisson',
               'qe_response': [],
               'qe_mean'    :  1,
