@@ -92,7 +92,7 @@ with st.form(key="my_form"):
 			    max_value=35,
           help="Magnitude in AB system")
 		
-		submit_button = st.form_submit_button(label="✨ Generate Image")
+		submit_button = st.form_submit_button(label="✨ Calculate")
 
 if submit_button:
 	if filter == 'g' :
