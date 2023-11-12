@@ -189,9 +189,9 @@ if submit_button:
 		st.pyplot(fig)
 
 		text = f"**Central Wavelength** : {np.round(params['wavelength'],2)} " + r"$\AA$"
-		text += f" | **Bandwidth** : {np.round(params['bandwidth'],2)} " + r"$\AA$"
-		text += f" | **Effective area** : {np.round(params['effective_area'],2)} " + r"$cm^2$"
-		text += f" | **Sky magnitude** : {np.round(params['sky_brightness'],2)} "
+		text += f" \|| **Bandwidth** : {np.round(params['bandwidth'],2)} " + r"$\AA$"
+		text += f" \|| **Effective area** : {np.round(params['effective_area'],2)} " + r"$cm^2$"
+		text += f" \|| **Sky magnitude** : {np.round(params['sky_brightness'],2)} "
 			
 		st.caption(text)
 	with c3:	
