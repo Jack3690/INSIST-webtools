@@ -26,7 +26,7 @@ st.set_page_config(
     layout="wide"
 )
 st.title("INSIST-Exposure Time Calculator")
-st.header("A basic exposure time calculator for the INdian Spectroscopic and Imaging Space Telescope")
+st.subheader("A basic exposure time calculator for the INdian Spectroscopic and Imaging Space Telescope")
 
 
 def coeff_calc(x0,xn,x=None,y=None,mode = None):
