@@ -56,13 +56,13 @@ with st.form(key="my_form"):
 			    value =20,
 			    min_value=1,
 			    max_value=3000,
-	                   help="Diameter of the secondary obstruction in cms")
+	                    help="Diameter of the secondary obstruction in cms")
 
 		sec_width = st.number_input(
 				"Spider width",
-				value =2.5,
-				min_value=1,
-				max_value=3000,
+				value = 2.5,
+				min_value=1.,
+				max_value=3000.,
 				help="Width of strcuture supporting the secondary in cms")
 	
 		st.subheader('Wavelength')
