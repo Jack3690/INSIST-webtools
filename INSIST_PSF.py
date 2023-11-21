@@ -69,16 +69,16 @@ with st.form(key="my_form"):
 		st.subheader('Wavelength')
 		wav_min = st.number_input(
 				r"$\lambda_1$",
-				value =100,
-				min_value=1,
-				max_value=30000,
+				value =150.,
+				min_value=1.,
+				max_value=30000.,
 				help="Starting wavelength in Angstrom")
 		
 		wav_max = st.number_input(
 			r"$\lambda_2$",
-			value =100,
-			min_value=1,
-			max_value=30000,
+			value =300.,
+			min_value=1.,
+			max_value=30000.,
 			help="Ending wavelength in Angstrom")
 		
 		wav_step = st.number_input(
@@ -119,9 +119,10 @@ if submit_button:
 		osys.add_detector(pixelscale=ps, fov_arcsec=20.1)
 	
 	psfs = 0
-	for wav in np.linspace(150,300,100):
+	for wav in np.arange(wav_min, wav_max, wav_step):
 	  psf = osys.calc_psf(wav*1e-9)
 	  psfs += psf[0].data
+		
 	psf[0].data = psfs/psfs.max()
 	
 	with c2:
