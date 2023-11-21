@@ -81,7 +81,7 @@ with st.form(key="my_form"):
 			help="Ending wavelength in Angstrom")
 		
 		wav_step = st.number_input(
-			r"$\\delta lambda$",
+			r"$\delta \lambda$",
 			value =100,
 			min_value=1,
 			max_value=30000,
@@ -90,8 +90,8 @@ with st.form(key="my_form"):
 		ps = st.number_input(
 			"Pixel scale",
 			value =0.1,
-			min_value=0,
-			max_value=5,
+			min_value=0.,
+			max_value=5.,
 			help="Pixel scale in arcsec/pixel")
 		
 		submit_button = st.form_submit_button(label="✨ Simulate")
