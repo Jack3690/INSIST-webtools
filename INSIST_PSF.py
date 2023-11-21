@@ -99,19 +99,19 @@ with st.form(key="my_form"):
 
 if submit_button:
 	if on_off == 'Off Axis':
-		osys = poy.OpticalSystem(oversample = 10, npix = 2000)
+		osys = poy.OpticalSystem(oversample = 5, npix = 2000)
 	
 		# Off axis Aperture
-		osys.add_pupil(poy.CircularAperture(radius=pri/2*u.cm))
+		osys.add_pupil(poy.CircularAperture(radius=(pri/2)*u.cm))
 		
 		# Detector
 		osys.add_detector(pixelscale=0.1, fov_arcsec=20.1)
 	if on_off == 'On Axis':
-		osys = poy.OpticalSystem(oversample = 10, npix = 2000)
+		osys = poy.OpticalSystem(oversample = 5, npix = 2000)
 	
 		# On axis Aperture
-		osys.add_pupil(poy.CircularAperture(radius=pri/2*u.cm))
-		osys.add_pupil(poy.SecondaryObscuration(secondary_radius = sec*u.cm,
+		osys.add_pupil(poy.CircularAperture(radius=(pri/2)*u.cm))
+		osys.add_pupil(poy.SecondaryObscuration(secondary_radius = (sec/2)*u.cm,
 		                                        support_width = sec_width*u.cm,
 		               support_angle_offset = 0))	
 		
