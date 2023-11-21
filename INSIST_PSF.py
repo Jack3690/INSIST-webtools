@@ -48,7 +48,7 @@ with st.form(key="my_form"):
 			    "Primary Mirror Aperture",
 			    min_value=10.,
 			    value=100.,
-			    max_value=3000.
+			    max_value=3000.,
 	                    help = "Diameter of primary mirror in cms")
 		
 		sec = st.number_input(
