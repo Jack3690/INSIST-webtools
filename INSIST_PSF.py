@@ -98,16 +98,15 @@ with st.form(key="my_form"):
 
 if submit_button:
 	if on_off == 'Off Axis':
-		osys = poy.OpticalSystem(oversample = 5, npix = 2000)
+		osys = poy.OpticalSystem(oversample = 10, npix = 2000)
 	
-		# On axis Aperture
+		# Off axis Aperture
 		osys.add_pupil(poy.CircularAperture(radius=pri/2*u.cm))
-		               support_angle_offset = 0))	
 		
 		# Detector
 		osys.add_detector(pixelscale=0.1, fov_arcsec=20.1)
 	if on_off == 'On Axis':
-		osys = poy.OpticalSystem(oversample = 5, npix = 2000)
+		osys = poy.OpticalSystem(oversample = 10, npix = 2000)
 	
 		# On axis Aperture
 		osys.add_pupil(poy.CircularAperture(radius=pri/2*u.cm))
@@ -116,7 +115,7 @@ if submit_button:
 		               support_angle_offset = 0))	
 		
 		# Detector
-		osys.add_detector(pixelscale=0.1, fov_arcsec=20.1)
+		osys.add_detector(pixelscale=ps, fov_arcsec=20.1)
 	
 	psfs = 0
 	for wav in np.linspace(150,300,100):
