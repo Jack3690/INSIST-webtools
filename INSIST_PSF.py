@@ -60,17 +60,11 @@ with st.form(key="my_form"):
 
 		sec_width = st.number_input(
 				"Spider width",
-				value =20,
+				value =2.5,
 				min_value=1,
 				max_value=3000,
 				help="Width of strcuture supporting the secondary in cms")
 	
-		focal_length = st.number_input(
-				"Total Focal Length",
-				value =20,
-				min_value=1,
-				max_value=3000,
-				help="Width of strcuture supporting the secondary in cms")
 		st.subheader('Wavelength')
 		wav_min = st.number_input(
 				r"$\lambda_1$",
@@ -78,6 +72,7 @@ with st.form(key="my_form"):
 				min_value=1,
 				max_value=30000,
 				help="Starting wavelength in Angstrom")
+		
 		wav_max = st.number_input(
 			r"$\lambda_2$",
 			value =100,
@@ -92,7 +87,14 @@ with st.form(key="my_form"):
 			max_value=30000,
 			help="Wavelength step in Angstrom")
 		
-		submit_button = st.form_submit_button(label="✨ Calculate")
+		ps = st.number_input(
+			"Pixel scale",
+			value =0.1,
+			min_value=0,
+			max_value=5,
+			help="Pixel scale in arcsec/pixel")
+		
+		submit_button = st.form_submit_button(label="✨ Simulate")
 
 if submit_button:
 	if on_off == 'Off Axis':
