@@ -92,7 +92,7 @@ with st.form(key="my_form"):
 			max_value=30000,
 			help="Wavelength step in Angstrom")
 		
-submit_button = st.form_submit_button(label="✨ Calculate")
+		submit_button = st.form_submit_button(label="✨ Calculate")
 
 if submit_button:
 	if on_off == 'Off Axis':
