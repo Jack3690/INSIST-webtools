@@ -133,10 +133,13 @@ if submit_button:
 		ax.grid(False)
 		st.pyplot(fig)
 		psf.writeto('psf.fits')
-		with io.BytesIO() as buffer:
-		    # Write array to buffer
-		    np.save(buffer, psf[0].data)
-		st.download_button("Download PSF", buffer, 'psf.npy')
+		try:
+			with io.BytesIO() as buffer:
+			    # Write array to buffer
+			    np.save(buffer, psf[0].data)
+			st.download_button("Download PSF", buffer, 'psf.npy')
+		except:
+			pass
 	with c3:	
 		if on_off == 'Off Axis':
 			fig, ax = plt.subplots(1,1, figsize=(7,7))
