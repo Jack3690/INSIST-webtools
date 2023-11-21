@@ -14,6 +14,7 @@ import seaborn as sb
 from astropy.modeling import fitting, models
 from scipy.integrate import quadrature,trapz
 import matplotlib
+import io
 
 sb.set_style('white')
 
@@ -131,6 +132,19 @@ if submit_button:
 		ax, cb = poy.display_psf(psf, title = 'Broadband PSF', ax=ax,return_ax=True)
 		ax.grid(False)
 		st.pyplot(fig)
+		psf.writeto('psf.fits')
+		with io.BytesIO() as buffer:
+		    # Write array to buffer
+		    np.save(buffer, psf[0].data)
+		st.download_button("Download PSF", buffer, 'psf.npy')
 	with c3:	
-		st.pyplot(osys.display())
-		
+		if on_off == 'Off Axis':
+			fig, ax = plt.subplots(1,1, figsize=(7,7))
+			osys.planes[0].display(ax=ax[0])
+
+		elif on_off == 'On Axis':
+			fig, ax = plt.subplots(2,1, figsize=(7,15))
+			osys.planes[0].display(ax=ax[0])
+			osys.planes[1].display(ax=ax[1])
+		st.pyplot(fig)
+			
