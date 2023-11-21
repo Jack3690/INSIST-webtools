@@ -3,3 +3,4 @@ pandas
 streamlit
 insist-pista
 opencv-python-headless
+poppy
