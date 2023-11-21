@@ -46,6 +46,7 @@ def exposure_time(det_params,M,SNR):
   aperture       = det_params['aperture']
   dark_current   = det_params['dark_current']
   read_noise     = det_params['read_noise']
+  gain           = det_params['gain']
 
   F_0_p   = 1.51e3*(bandwidth/wavelength)*3631*effective_area
   F_m_p   = F_0_p*pow(10,-0.4*M)
@@ -56,7 +57,7 @@ def exposure_time(det_params,M,SNR):
 
   A =  (F_m_p/SNR)**2
   B = -(F_m_p + F_sky_p*n_pix + dark_current*n_pix)
-  C = -n_pix*(read_noise)**2
+  C = -n_pix*((read_noise)**2 + (gain/2)**)
 
   t1 = (-B + np.sqrt(B**2 - 4*A*C))/(2*A)
   t2 = (-B - np.sqrt(B**2 - 4*A*C))/(2*A)
@@ -162,6 +163,7 @@ if submit_button:
 	params['aperture'] = 0.6
 	params['dark_current'] = np.mean(sim.DR)
 	params['read_noise'] = sim.det_params['RN']
+	params['gain'] = sim.gain # ADUs/e
 
 	exp_time = float(exposure_time(params,mag,SNR))
 	sim = pt.Imager(df, tel_params=tel_params, n_x=51, n_y=51, exp_time=exp_time)
