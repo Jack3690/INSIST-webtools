@@ -42,112 +42,85 @@ with st.form(key="my_form"):
 	c1, c2, c3 = st.columns([ 1, 2,0.8])
 	with c1:
 		on_off = st.selectbox('Type',
-                          ('Off Axis', 'On Axis'))
-		primary = st.number_input(
+			  ('Off Axis', 'On Axis'))
+		
+		pri = st.number_input(
 			    "Primary Mirror Aperture",
 			    min_value=10.,
-          		    value=100.,
+			    value=100.,
 			    max_value=3000.
-          help = "Diameter of primary mirror in cms")
+	                    help = "Diameter of primary mirror in cms")
 		
-		sec_obs = st.number_input(
+		sec = st.number_input(
 			    "Secondary Obstruction Diameter",
 			    value =20,
 			    min_value=1,
 			    max_value=3000,
-          help="Diameter of the secondary obstruction in cms")
+	                   help="Diameter of the secondary obstruction in cms")
 
-    sec_width = st.number_input(
-      "Spider width",
-      value =20,
-      min_value=1,
-      max_value=3000,
-      help="Width of strcuture supporting the secondary in cms")
-
-    focal_length = st.number_input(
-      "Total Focal Length",
-      value =20,
-      min_value=1,
-      max_value=3000,
-      help="Width of strcuture supporting the secondary in cms")
-
-    
+		sec_width = st.number_input(
+				"Spider width",
+				value =20,
+				min_value=1,
+				max_value=3000,
+				help="Width of strcuture supporting the secondary in cms")
+	
+		focal_length = st.number_input(
+				"Total Focal Length",
+				value =20,
+				min_value=1,
+				max_value=3000,
+				help="Width of strcuture supporting the secondary in cms")
+		st.subheader('Wavelength')
+		wav_min = st.number_input(
+				r"$\lambda_1$",
+				value =100,
+				min_value=1,
+				max_value=30000,
+				help="Starting wavelength in Angstrom")
+		wav_max = st.number_input(
+			r"$\lambda_2$",
+			value =100,
+			min_value=1,
+			max_value=30000,
+			help="Ending wavelength in Angstrom")
 		
-		submit_button = st.form_submit_button(label="✨ Calculate")
+		wav_step = st.number_input(
+			r"$\\delta lambda$",
+			value =100,
+			min_value=1,
+			max_value=30000,
+			help="Wavelength step in Angstrom")
+		
+submit_button = st.form_submit_button(label="✨ Calculate")
 
 if submit_button:
-	if filter == 'g' :
-		tel_params ={
-		    'aperture'       : 100,
-		    'pixel_scale'    : 0.1,
-		    'psf_file'       : f'{data_path}/PSF/INSIST/off_axis_poppy.npy',
-		    'response_funcs' :  [ f'{data_path}/INSIST/G/M1.dat,5,100', 
-					  f'{data_path}/INSIST/G/Dichroic.dat,1,100',
-					  f'{data_path}/INSIST/G/Filter.dat,1,100',      # 6 mirrors
-					  f'{data_path}/INSIST/G/QE.dat,1,100',
-					],        
-		     'coeffs'       : 1,
-		     'theta'        : 0                  
-		            }
-	elif filter =='u' :
-		tel_params ={
-		    'aperture'       : 100,
-		    'pixel_scale'    : 0.1,
-		    'psf_file'       : f'{data_path}/PSF/INSIST/off_axis_poppy.npy',
-		    'response_funcs' :  [ f'{data_path}/INSIST/U/M1.dat,5,100', 
-					  f'{data_path}/INSIST/U/Dichroic.dat,2,100',
-					  f'{data_path}/INSIST/U/Filter.dat,1,100',      # 6 mirrors
-					  f'{data_path}/INSIST/U/QE.dat,1,100',
-					],        
-		     'coeffs'       : 1,
-		     'theta'        : 0                  
-		    }
-	elif filter=='UV':
-		tel_params = {
-		    'aperture'       : 100,
-		    'pixel_scale'    : 0.1,
-		    'psf_file'       : f'{data_path}/PSF/INSIST/off_axis_poppy.npy',
-		    'response_funcs' :  [f'{data_path}/INSIST/UV/Coating.dat,5,100', 
-					 f'{data_path}/INSIST/UV/Dichroic.dat,2,100',
-			    		 f'{data_path}/INSIST/UV/Filter.dat,1,100', 
-					 f'{data_path}/INSIST/UV/QE.dat,1,100'
-					 
-					],        
-		     'coeffs'       : 1,
-		     'theta'        : 0                  
-		    }	
-	df = pd.DataFrame()
-	df['ra']=[0,0]
-	df['dec']=[0,0]
-	df['mag']= [mag,100]
+	if on_off == 'Off Axis':
+		osys = poy.OpticalSystem(oversample = 10, npix = 4000)
 	
-	sim = pt.Imager(df, tel_params=tel_params, n_x=51, n_y=51, exp_time=600)
-	det_params = {'shot_noise' :  'Poisson',
-              'qe_response': [],
-              'qe_mean'    :  1,
-              'G1'         :  1,
-              'bias'       :  50,
-              'PRNU_frac'  :  0.25/100,
-              'RN'         :  3,
-              'T'          :  218,
-              'DN'         :  0.01/100
-              }
-	sim(det_params=det_params, photometry = None)
-	params = {}
+		# On axis Aperture
+		osys.add_pupil(poy.CircularAperture(radius=pri/2*u.cm))
+		osys.add_pupil(poy.SecondaryObscuration(secondary_radius = sec*u.cm,
+		                                        support_width = sec_width*u.cm,
+		               support_angle_offset = 0))
+		
+		# MOS
+		ap1 = poy.SquareAperture(size = 1*u.m)
+		ap2 = poy.SecondaryObscuration(secondary_radius = 1*u.cm,
+		                                        support_width = 2.5*u.cm,
+		               support_angle_offset = 0)
+		
+		atlast = poy.CompoundAnalyticOptic( opticslist=[ap1, ap2 ], name='MOS Mirrorlets')
+		#osys.add_pupil(atlast)
+		
+		
+		# Detector
+		osys.add_detector(pixelscale=0.1, fov_arcsec=40.1)
 	
-	params['wavelength'] = sim.lambda_phot
-	params['bandwidth'] = sim.W_eff
-	params['effective_area'] = np.pi*(100/2)**2*sim.flux_ratio
-	params['sky_brightness'] = sim.det_params['M_sky']
-	params['plate_scale'] = sim.pixel_scale
-	params['aperture'] = 0.6
-	params['dark_current'] = np.mean(sim.DR)
-	params['read_noise'] = sim.det_params['RN']
-
-	exp_time = float(exposure_time(params,mag,SNR))
-	sim = pt.Imager(df, tel_params=tel_params, n_x=51, n_y=51, exp_time=exp_time)
-	sim.QE = False
-	sim(det_params=det_params, photometry = None, fwhm=1.5)
+	psfs = 0
+	for wav in np.linspace(150,300,100):
+	  psf = osys.calc_psf(wav*1e-9)
+	  psfs += psf[0].data
 	with c2:
 		wav = np.arange(1000, 8000, 1)
 		flux = 3631/(3.34e4*wav**2)   # AB flux
