@@ -83,9 +83,9 @@ with st.form(key="my_form"):
 		
 		wav_step = st.number_input(
 			r"$\delta \lambda$",
-			value =1,
+			value =1.,
 			min_value=0.1,
-			max_value=100,
+			max_value=100.,
 			help="Wavelength step in Angstrom")
 		
 		ps = st.number_input(
