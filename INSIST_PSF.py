@@ -102,6 +102,15 @@ if submit_button:
 	
 		# On axis Aperture
 		osys.add_pupil(poy.CircularAperture(radius=pri/2*u.cm))
+		               support_angle_offset = 0))	
+		
+		# Detector
+		osys.add_detector(pixelscale=0.1, fov_arcsec=20.1)
+	if on_off == 'On Axis':
+		osys = poy.OpticalSystem(oversample = 5, npix = 2000)
+	
+		# On axis Aperture
+		osys.add_pupil(poy.CircularAperture(radius=pri/2*u.cm))
 		osys.add_pupil(poy.SecondaryObscuration(secondary_radius = sec*u.cm,
 		                                        support_width = sec_width*u.cm,
 		               support_angle_offset = 0))	
