@@ -96,61 +96,28 @@ submit_button = st.form_submit_button(label="✨ Calculate")
 
 if submit_button:
 	if on_off == 'Off Axis':
-		osys = poy.OpticalSystem(oversample = 10, npix = 4000)
+		osys = poy.OpticalSystem(oversample = 5, npix = 2000)
 	
 		# On axis Aperture
 		osys.add_pupil(poy.CircularAperture(radius=pri/2*u.cm))
 		osys.add_pupil(poy.SecondaryObscuration(secondary_radius = sec*u.cm,
 		                                        support_width = sec_width*u.cm,
-		               support_angle_offset = 0))
-		
-		# MOS
-		ap1 = poy.SquareAperture(size = 1*u.m)
-		ap2 = poy.SecondaryObscuration(secondary_radius = 1*u.cm,
-		                                        support_width = 2.5*u.cm,
-		               support_angle_offset = 0)
-		
-		atlast = poy.CompoundAnalyticOptic( opticslist=[ap1, ap2 ], name='MOS Mirrorlets')
-		#osys.add_pupil(atlast)
-		
+		               support_angle_offset = 0))	
 		
 		# Detector
-		osys.add_detector(pixelscale=0.1, fov_arcsec=40.1)
+		osys.add_detector(pixelscale=0.1, fov_arcsec=20.1)
 	
 	psfs = 0
 	for wav in np.linspace(150,300,100):
 	  psf = osys.calc_psf(wav*1e-9)
 	  psfs += psf[0].data
+	psf[0].data = psfs/psfs.max()
+	
 	with c2:
-		wav = np.arange(1000, 8000, 1)
-		flux = 3631/(3.34e4*wav**2)   # AB flux
-		fig, ax = plt.subplots(figsize=(15,5))
-		fig, ax, _, params_ = bandpass(wav, flux, sim.response_funcs,fig=fig, ax=ax,
-		plot=True)
-
-		st.text(f'Exposure time required for {mag} magnitude star with SNR = {SNR}: {np.round(exp_time,3)} seconds')
-		
-		lambda_phot, int_flux, int_flux_Jy, W_eff, flux_ratio = params_
-		
-		ax.xaxis.set_minor_locator(AutoMinorLocator())
-		ax.yaxis.set_minor_locator(AutoMinorLocator())
-		
-		ax.tick_params(which='both', width=2,direction="in", top = True,right = True,
-		bottom = True, left = True)
-		ax.tick_params(which='major', length=7,direction="in")
-		ax.tick_params(which='minor', length=4, color='black',direction="in")
-		
+		fig, ax = plt.subplots()
+		ax, cb = poy.display_psf(psf, title = 'Broadband PSF', ax=ax,return_ax=True)
+		ax.grid(False)
 		st.pyplot(fig)
-
-		text = f"**Central Wavelength** : {np.round(params['wavelength'],2)} " + r"$\AA$"
-		text += f" \|| **Bandwidth** : {np.round(params['bandwidth'],2)} " + r"$\AA$"
-		text += f" \|| **Effective area** : {np.round(params['effective_area'],2)} " + r"$cm^2$"
-		text += f" \|| **Sky magnitude** : {np.round(params['sky_brightness'],2)} "
-			
-		st.caption(text)
 	with c3:	
-		fig, ax = sim.show_image(show_wcs=False)
-		ax.set_title(None)
-		fig.suptitle("2D SNR Output [ADUs]",fontsize=40)
-		st.pyplot(fig)
+		st.pyplot(osys.display())
 		
