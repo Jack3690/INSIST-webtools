@@ -6,6 +6,7 @@ import poppy as poy
 from pathlib import Path
 from astropy.table import Table
 from astropy.io import fits
+import astropy.units as u
 
 import matplotlib.pyplot as plt
 from matplotlib.ticker import (MultipleLocator, AutoLocator, AutoMinorLocator)
