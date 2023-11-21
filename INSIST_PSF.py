@@ -42,6 +42,7 @@ with st.expander("ℹ️ - About this app", expanded=True):
 with st.form(key="my_form"):
 	c1, c2, c3 = st.columns([ 1, 2,0.8])
 	with c1:
+		st.subheader('Optics')
 		on_off = st.selectbox('Type',
 			  ('Off Axis', 'On Axis'))
 		
