@@ -142,7 +142,7 @@ if submit_button:
 	with c3:	
 		if on_off == 'Off Axis':
 			fig, ax = plt.subplots(1,1, figsize=(7,7))
-			osys.planes[0].display(ax=ax[0])
+			osys.planes[0].display(ax=ax)
 
 		elif on_off == 'On Axis':
 			fig, ax = plt.subplots(2,1, figsize=(7,15))
