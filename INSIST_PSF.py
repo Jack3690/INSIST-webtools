@@ -97,7 +97,7 @@ with c1:
 		max_value=5.,
 		help="Pixel scale in arcsec/pixel")
 	
-	submit_button = st.form_submit_button(label="✨ Simulate")
+	submit_button = st.button(label="✨ Simulate")
 
 if submit_button:
 	if on_off == 'Off Axis':
