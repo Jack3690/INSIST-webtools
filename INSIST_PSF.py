@@ -135,7 +135,7 @@ if submit_button:
 		with io.BytesIO() as buffer:
 		    # Write array to buffer
 		    np.save(buffer, psf[0].data)
-		st.download_button("Download PSF", buffer, 'psf.npy')
+		    st.download_button("Download PSF", buffer, 'psf.npy')
 		
 	with c3:	
 		if on_off == 'Off Axis':
