@@ -34,7 +34,8 @@ with st.expander("ℹ️ - About this app", expanded=True):
 
     st.write(
         """     
-   	   This webtool is for generic PSF Simulation
+   	   This webtool is for generic PSF Simulation. The PSF is 5 times oversampled and is generated for a FoV of 20.1 arcseconds. 
+       	   The PSF can be downloaded as a Numpy .npy file.
 	    """
     )
 
@@ -66,7 +67,7 @@ with c1:
 			value = 2.5,
 			min_value=1.,
 			max_value=3000.,
-			help="Width of strcuture supporting the secondary in cms")
+			help="Width of structure supporting the secondary in cms")
 
 	st.subheader('Wavelength')
 	wav_min = st.number_input(
@@ -85,7 +86,7 @@ with c1:
 	
 	wav_step = st.number_input(
 		r"$\delta \lambda$",
-		value =1.,
+		value =50.,
 		min_value=0.1,
 		max_value=100.,
 		help="Wavelength step in Angstrom")
