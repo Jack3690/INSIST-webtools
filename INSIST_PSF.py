@@ -132,7 +132,6 @@ if submit_button:
 		ax, cb = poy.display_psf(psf, title = 'Broadband PSF', ax=ax,return_ax=True)
 		ax.grid(False)
 		st.pyplot(fig)
-		psf.writeto('psf.fits')
 		try:
 			with io.BytesIO() as buffer:
 			    # Write array to buffer
