@@ -132,13 +132,11 @@ if submit_button:
 		ax, cb = poy.display_psf(psf, title = 'Broadband PSF', ax=ax,return_ax=True)
 		ax.grid(False)
 		st.pyplot(fig)
-		try:
-			with io.BytesIO() as buffer:
-			    # Write array to buffer
-			    np.save(buffer, psf[0].data)
-			st.download_button("Download PSF", buffer, 'psf.npy')
-		except:
-			pass
+		with io.BytesIO() as buffer:
+		    # Write array to buffer
+		    np.save(buffer, psf[0].data)
+		st.download_button("Download PSF", buffer, 'psf.npy')
+		
 	with c3:	
 		if on_off == 'Off Axis':
 			fig, ax = plt.subplots(1,1, figsize=(7,7))
@@ -149,4 +147,4 @@ if submit_button:
 			osys.planes[0].display(ax=ax[0])
 			osys.planes[1].display(ax=ax[1])
 		st.pyplot(fig)
-			
+
