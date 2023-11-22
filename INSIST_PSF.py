@@ -23,10 +23,10 @@ matplotlib.rcParams['figure.figsize']=(10,10)
 
 
 st.set_page_config(
-    page_title="INSIST PSF Simulator",
+    page_title="INSIST-PSF",
     layout="wide"
 )
-st.title("INSIST-PSF")
+st.title("INSIST PSF Simulator")
 st.subheader("A basic PSF Simulator using POPPY")
 
 
@@ -41,7 +41,7 @@ with st.expander("ℹ️ - About this app", expanded=True):
     st.markdown("")
 
 #with st.form(key="my_form"):
-c1, c2, c3 = st.columns([ 1, 2,0.8])
+c1, c2, c3 = st.columns([ 1, 2,1.2])
 with c1:
 	st.subheader('Optics')
 	on_off = st.selectbox('Type',
@@ -143,7 +143,7 @@ if submit_button:
 			osys.planes[0].display(ax=ax)
 
 		elif on_off == 'On Axis':
-			fig, ax = plt.subplots(2,1, figsize=(7,18))
+			fig, ax = plt.subplots(2,1, figsize=(9,18))
 			osys.planes[0].display(ax=ax[0])
 			osys.planes[1].display(ax=ax[1])
 		st.pyplot(fig)
