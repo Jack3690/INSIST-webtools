@@ -143,7 +143,7 @@ if submit_button:
 			osys.planes[0].display(ax=ax)
 
 		elif on_off == 'On Axis':
-			fig, ax = plt.subplots(2,1, figsize=(7,15))
+			fig, ax = plt.subplots(2,1, figsize=(7,18))
 			osys.planes[0].display(ax=ax[0])
 			osys.planes[1].display(ax=ax[1])
 		st.pyplot(fig)
