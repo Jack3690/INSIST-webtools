@@ -40,64 +40,64 @@ with st.expander("ℹ️ - About this app", expanded=True):
 
     st.markdown("")
 
-with st.form(key="my_form"):
-	c1, c2, c3 = st.columns([ 1, 2,0.8])
-	with c1:
-		st.subheader('Optics')
-		on_off = st.selectbox('Type',
-			  ('Off Axis', 'On Axis'))
-		
-		pri = st.number_input(
-			    "Primary Mirror Aperture",
-			    min_value=10.,
-			    value=100.,
-			    max_value=3000.,
-	                    help = "Diameter of primary mirror in cms")
-		
-		sec = st.number_input(
-			    "Secondary Obstruction Diameter",
-			    value =20,
-			    min_value=1,
-			    max_value=3000,
-	                    help="Diameter of the secondary obstruction in cms")
-
-		sec_width = st.number_input(
-				"Spider width",
-				value = 2.5,
-				min_value=1.,
-				max_value=3000.,
-				help="Width of strcuture supporting the secondary in cms")
+#with st.form(key="my_form"):
+c1, c2, c3 = st.columns([ 1, 2,0.8])
+with c1:
+	st.subheader('Optics')
+	on_off = st.selectbox('Type',
+		  ('Off Axis', 'On Axis'))
 	
-		st.subheader('Wavelength')
-		wav_min = st.number_input(
-				r"$\lambda_1$",
-				value =150.,
-				min_value=1.,
-				max_value=30000.,
-				help="Starting wavelength in Angstrom")
-		
-		wav_max = st.number_input(
-			r"$\lambda_2$",
-			value =300.,
+	pri = st.number_input(
+		    "Primary Mirror Aperture",
+		    min_value=10.,
+		    value=100.,
+		    max_value=3000.,
+		    help = "Diameter of primary mirror in cms")
+	
+	sec = st.number_input(
+		    "Secondary Obstruction Diameter",
+		    value =20,
+		    min_value=1,
+		    max_value=3000,
+		    help="Diameter of the secondary obstruction in cms")
+
+	sec_width = st.number_input(
+			"Spider width",
+			value = 2.5,
+			min_value=1.,
+			max_value=3000.,
+			help="Width of strcuture supporting the secondary in cms")
+
+	st.subheader('Wavelength')
+	wav_min = st.number_input(
+			r"$\lambda_1$",
+			value =150.,
 			min_value=1.,
 			max_value=30000.,
-			help="Ending wavelength in Angstrom")
-		
-		wav_step = st.number_input(
-			r"$\delta \lambda$",
-			value =1.,
-			min_value=0.1,
-			max_value=100.,
-			help="Wavelength step in Angstrom")
-		
-		ps = st.number_input(
-			"Pixel scale",
-			value =0.1,
-			min_value=0.,
-			max_value=5.,
-			help="Pixel scale in arcsec/pixel")
-		
-		submit_button = st.form_submit_button(label="✨ Simulate")
+			help="Starting wavelength in Angstrom")
+	
+	wav_max = st.number_input(
+		r"$\lambda_2$",
+		value =300.,
+		min_value=1.,
+		max_value=30000.,
+		help="Ending wavelength in Angstrom")
+	
+	wav_step = st.number_input(
+		r"$\delta \lambda$",
+		value =1.,
+		min_value=0.1,
+		max_value=100.,
+		help="Wavelength step in Angstrom")
+	
+	ps = st.number_input(
+		"Pixel scale",
+		value =0.1,
+		min_value=0.,
+		max_value=5.,
+		help="Pixel scale in arcsec/pixel")
+	
+	submit_button = st.form_submit_button(label="✨ Simulate")
 
 if submit_button:
 	if on_off == 'Off Axis':
