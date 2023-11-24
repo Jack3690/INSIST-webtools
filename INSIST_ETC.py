@@ -57,7 +57,7 @@ def exposure_time(det_params,M,SNR):
 
   A =  (F_m_p/SNR)**2
   B = -(F_m_p + F_sky_p*n_pix + dark_current*n_pix)
-  C = -n_pix*((read_noise)**2 + (gain/2)**)
+  C = -n_pix*((read_noise)**2 + (gain/2)**2)
 
   t1 = (-B + np.sqrt(B**2 - 4*A*C))/(2*A)
   t2 = (-B - np.sqrt(B**2 - 4*A*C))/(2*A)
