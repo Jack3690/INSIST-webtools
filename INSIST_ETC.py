@@ -163,7 +163,7 @@ if submit_button:
 	params['aperture'] = 0.6
 	params['dark_current'] = np.mean(sim.DR)
 	params['read_noise'] = sim.det_params['RN']
-	params['gain'] = 1.sim.gain # e/ADUs
+	params['gain'] = 1/sim.gain # e/ADUs
 
 	exp_time = float(exposure_time(params,mag,SNR))
 	sim = pt.Imager(df, tel_params=tel_params, n_x=51, n_y=51, exp_time=exp_time)
