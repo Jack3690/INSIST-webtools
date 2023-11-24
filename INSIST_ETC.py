@@ -176,7 +176,7 @@ if submit_button:
 		fig, ax, _, params_ = bandpass(wav, flux, sim.response_funcs,fig=fig, ax=ax,
 		plot=True)
 
-		st.text(f'Exposure time required for {mag} magnitude star with SNR = {SNR}: {np.round(exp_time,3)} seconds')
+		st.text(f'Exposure time required for {mag} magnitude star with \n SNR = {SNR}: {np.round(exp_time,3)} seconds')
 		
 		lambda_phot, int_flux, int_flux_Jy, W_eff, flux_ratio = params_
 		
