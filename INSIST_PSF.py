@@ -72,14 +72,14 @@ with c1:
 	st.subheader('Wavelength')
 	wav_min = st.number_input(
 			r"$\lambda_1$",
-			value =150.,
+			value =1500.,
 			min_value=1.,
 			max_value=30000.,
 			help="Starting wavelength in Angstrom")
 	
 	wav_max = st.number_input(
 		r"$\lambda_2$",
-		value =300.,
+		value =3000.,
 		min_value=1.,
 		max_value=30000.,
 		help="Ending wavelength in Angstrom")
@@ -123,7 +123,7 @@ if submit_button:
 	
 	psfs = 0
 	for wav in np.arange(wav_min, wav_max, wav_step):
-	  psf = osys.calc_psf(wav*1e-9)
+	  psf = osys.calc_psf(wav*1e-10)
 	  psfs += psf[0].data
 		
 	psf[0].data = psfs/psfs.max()
