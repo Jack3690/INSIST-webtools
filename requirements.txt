@@ -1,6 +1,6 @@
 altair
 pandas
 streamlit
-insist-pista
+insist-pista @ git+https://github.com/Jack3690/INSIST@main
 opencv-python-headless
 poppy
